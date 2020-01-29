@@ -1,0 +1,19 @@
+@import "~@angular/material/theming";
+@include mat-core();
+
+// Typography
+$custom-typography: mat-typography-config(
+  $font-family: Ubuntu,
+  $headline: mat-typography-level(24px, 48px, 400),
+  $body-1: mat-typography-level(16px, 24px, 400)
+);
+@include angular-material-typography($custom-typography);
+
+// Base theme
+$theme-primary: mat-palette($mat-grey, 900, 700, 200);
+$theme-accent: mat-palette($mat-blue, 800, 700, 600);
+$theme-warn: mat-palette($mat-deep-orange);
+$background-color: map_get($mat-blue-grey, 50);
+
+$main-theme: mat-theme-theme($theme-primary, $theme-accent, $theme-warn);
+@include angular-material-theme($main-theme);
