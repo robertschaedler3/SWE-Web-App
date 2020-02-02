@@ -1,6 +1,10 @@
 version: "3"
 
 services:
+  build-frontend:
+    image: ./Dockerfile
+    volumes: /var/www:/var/www
+
   nginx:
     image: nginx:latest
     ports:
