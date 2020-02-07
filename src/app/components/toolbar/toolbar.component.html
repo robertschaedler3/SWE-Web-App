@@ -1,1 +1,19 @@
-<p>toolbar works!</p>
+<mat-toolbar>
+    <span>
+        <img src="assets/images/logo.png">
+    </span>
+    <span class="spacer"></span>
+    <form class="spacer search">
+        <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Search</mat-label>
+            <input matInput placeholder="Ex: Last Wednesday">
+            <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+    </form>
+    <span class="spacer"></span>
+    <span>
+        <button mat-icon-button>
+            <mat-icon>tune</mat-icon>
+        </button>
+    </span>
+</mat-toolbar>

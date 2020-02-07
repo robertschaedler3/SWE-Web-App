@@ -1,0 +1,25 @@
+.spacer {
+  flex: 1 1 auto;
+}
+
+.search {
+  min-width: 150px;
+  max-width: 400px;
+  width: 100%;
+  align-items: center;
+}
+
+.full-width {
+  width: 100%;
+}
+
+img {
+  height: 37px;
+}
+
+mat-form-field {
+  font-size: 13px;
+  color: #333;
+  height: 45px;
+  margin-bottom: 0.65rem;
+}
