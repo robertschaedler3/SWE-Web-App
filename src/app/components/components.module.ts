@@ -18,10 +18,10 @@ import {
   MatDialogModule,
   MatSliderModule
 } from '@angular/material';
-import { HeaderComponent } from './header/header.component';
+import { ToolbarComponent } from './toolbar/toolbar.component';
 import { FooterComponent } from './footer/footer.component';
 @NgModule({
-  declarations: [HeaderComponent, FooterComponent],
+  declarations: [ToolbarComponent, FooterComponent],
   imports: [
     CommonModule,
     MatButtonModule,
@@ -55,7 +55,9 @@ import { FooterComponent } from './footer/footer.component';
     MatCardModule,
     MatIconModule,
     MatDialogModule,
-    MatSliderModule
+    MatSliderModule,
+    ToolbarComponent,
+    FooterComponent
   ]
 })
 export class ComponentModule { }
