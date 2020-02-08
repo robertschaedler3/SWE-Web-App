@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ComponentModule } from './components/components.module';
-import { MaterialModule } from './shared/material.module';
 
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
 
@@ -20,7 +19,6 @@ import { MainLayoutComponent } from './layouts/main-layout/main-layout.component
     AppRoutingModule,
     BrowserAnimationsModule,
     ComponentModule,
-    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]
