@@ -5,14 +5,17 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { ComponentModule } from './components/components.module';
+import { AuthGuard } from './auth/auth.guard';
 
+import { ComponentModule } from './components/components.module';
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MainLayoutComponent
+    MainLayoutComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -20,7 +23,7 @@ import { MainLayoutComponent } from './layouts/main-layout/main-layout.component
     BrowserAnimationsModule,
     ComponentModule,
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
