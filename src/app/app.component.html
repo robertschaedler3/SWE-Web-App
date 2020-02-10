@@ -1,6 +1,6 @@
 <style>
   :host {
-    font-family: "Open Sans";
+    font-family: "Roboto";
     font-size: 14px;
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
@@ -26,20 +26,39 @@
     min-width: 50%;
     min-height: 50%;
   }
+
+  /* #red-panel {
+    position: relative;
+    animation-name: slideRed;
+    animation-duration: 0.75s;
+    animation-timing-function: ease-out;
+    animation-delay: 0s;
+  }
+
+  @keyframes slideRed {
+    0% {
+      top: 500px;
+      transform: translateY(100px);
+    }
+
+    100% {
+      transform: translateY(0);
+    }
+  } */
 </style>
 
 <div class="background">
   <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1920" height="1080"
     viewBox="0 0 1920 1080">
     <defs>
-      <filter id="charcoal" x="-120" y="-117" width="2160" height="855.798" filterUnits="userSpaceOnUse">
+      <filter id="charcoal-filter" x="-120" y="-117" width="2160" height="855.798" filterUnits="userSpaceOnUse">
         <feOffset dy="3" input="SourceAlpha" />
         <feGaussianBlur stdDeviation="40" result="blur" />
         <feFlood />
         <feComposite operator="in" in2="blur" />
         <feComposite in="SourceGraphic" />
       </filter>
-      <filter id="blood" x="-120" y="327.333" width="2160.001" height="875.668" filterUnits="userSpaceOnUse">
+      <filter id="blood-filter" x="-120" y="327.333" width="2160.001" height="875.668" filterUnits="userSpaceOnUse">
         <feOffset dy="3" input="SourceAlpha" />
         <feGaussianBlur stdDeviation="40" result="blur-2" />
         <feFlood />
@@ -51,12 +70,12 @@
       </clipPath>
     </defs>
     <path id="grey" d="M0,0H1920.349V1080H0Z" transform="translate(0 0)" fill="#999" />
-    <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#charcoal)">
-      <path id="charcoal-2" data-name="charcoal" d="M226,2706.8V2091H2146v414L226,2706.8Z"
+    <g id="charcoal-panel" transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#charcoal-filter)">
+      <path id="charcoal" data-name="charcoal" d="M226,2706.8V2091H2146v414L226,2706.8Z"
         transform="translate(-226 -2091)" fill="#333" />
     </g>
-    <g id="elem" transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#blood)">
-      <path id="blood-2" data-name="blood" d="M2393,2444.667H473V1809l1920,338.548v297.119Z"
+    <g id="red-panel" transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#blood-filter)">
+      <path id="blood" data-name="blood" d="M2393,2444.667H473V1809l1920,338.548v297.119Z"
         transform="translate(-473 -1364.67)" fill="#7f0112" />
     </g>
   </svg>
