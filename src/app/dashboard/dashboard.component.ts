@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { ScheduledEvent } from '../utils/scheduled-event.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
+  events$: Observable<ScheduledEvent[]>;
+
   constructor() { }
 
   ngOnInit() {
+
   }
 
 }

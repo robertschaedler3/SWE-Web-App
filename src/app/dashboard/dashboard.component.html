@@ -1,8 +1,32 @@
-<div class="row">
+<div class="row mat-typography">
     <div class="card-col col-md-4">
-        <mat-card></mat-card>
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>People</mat-card-title>
+            </mat-card-header>
+            <hr>
+        </mat-card>
     </div>
     <div class="card-col col-md-8">
-        <mat-card></mat-card>
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>Events</mat-card-title>
+                <span class="spacer"></span>
+                <button mat-raised-button color="primary">Create Event</button>
+            </mat-card-header>
+            <hr>
+            <div class="row">
+
+                <div *ngIf="events$ | async as events; else noEvents">
+
+
+                </div>
+                <ng-template #noEvents>
+                    <div class="col-md-12">
+                        No events
+                    </div>
+                </ng-template>
+            </div>
+        </mat-card>
     </div>
 </div>

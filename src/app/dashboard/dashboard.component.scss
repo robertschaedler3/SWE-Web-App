@@ -1,3 +1,19 @@
 .card-col {
   padding-bottom: 1rem !important;
 }
+
+hr {
+  margin-top: 0px;
+  // background-color: #eee;
+}
+
+mat-card {
+  color: #333;
+  background-color: #dddddd;
+  // color: #fff;
+  // background-color: #4e4e4e;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
