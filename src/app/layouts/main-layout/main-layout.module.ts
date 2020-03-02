@@ -5,6 +5,7 @@ import { MaterialModule } from '../../utils/material.module';
 
 import { MainLayoutRoutingModule } from './main-layout-routing.module';
 import { DashboardComponent } from 'src/app/dashboard/dashboard.component';
+import { CreateEventDialogComponent } from 'src/app/create-event-dialog/create-event-dialog.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { DashboardComponent } from 'src/app/dashboard/dashboard.component';
     CommonModule,
     MainLayoutRoutingModule,
     MaterialModule
-  ]
+  ],
+  entryComponents: [CreateEventDialogComponent]
 })
 export class MainLayoutModule { }
