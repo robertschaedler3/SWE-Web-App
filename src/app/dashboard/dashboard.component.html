@@ -31,14 +31,14 @@
                                     {{ (event.description.length>6)? (event.description | slice:0:140)+'...':(event.description) }}
                                 </p>
                                 <div class="row">
-                                    <div class="col-md-4">
+                                    <div class="col-md-5">
                                         <p class="event-info">
                                             <mat-icon class="detail-icon">location_on</mat-icon>
-                                            location
+                                            {{event.building}}: {{event.room}}
                                         </p>
 
                                     </div>
-                                    <div class="col-md-8">
+                                    <div class="col-md-7">
                                         <p class="event-info">
                                             <mat-icon class="detail-icon">today</mat-icon>
                                             {{event.day | date:'MM/yy'}} {{event.start}}-{{event.end}}
