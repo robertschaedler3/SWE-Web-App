@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ScheduledEvent } from '../utils/scheduled-event.model';
 import { HttpClient } from '@angular/common/http';
 import { map, tap } from 'rxjs/operators';
 import * as _ from 'lodash';
@@ -12,7 +11,7 @@ import { Event } from '../interfaces/event.interface';
 })
 export class EventService {
 
-  public events$: Observable<ScheduledEvent[]>;
+  public events$: Observable<Event[]>;
 
   constructor(private http: HttpClient) { }
 
