@@ -8,6 +8,9 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AuthGuard } from './auth/auth.guard';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MaterialModule } from './utils/material.module';
+
 import { ComponentModule } from './components/components.module';
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
 import { LoginComponent } from './login/login.component';
@@ -23,7 +26,10 @@ import { LoginComponent } from './login/login.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     ComponentModule,
-    HttpClientModule
+    HttpClientModule,
+    MaterialModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]
