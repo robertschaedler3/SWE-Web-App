@@ -6,7 +6,7 @@
 }
 
 .login-container .row {
-  max-width: 500px;
+  max-width: 300px;
 }
 
 .logo {
@@ -17,9 +17,25 @@
   margin-bottom: 3rem;
 }
 
+.button-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.button-logo {
+  width: 25px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  margin-right: 10px;
+  font-size: 12px;
+}
+
 ::ng-deep {
   .mat-form-field-appearance-outline .mat-form-field-outline {
     color: #ccc;
+    background-color: #444;
+    border-radius: 5px;
   }
   mat-form-field {
     .mat-hint,
