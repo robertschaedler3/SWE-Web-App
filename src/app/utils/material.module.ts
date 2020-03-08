@@ -16,8 +16,14 @@ import {
   MatCardModule,
   MatIconModule,
   MatDialogModule,
-  MatSliderModule
+  MatSliderModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatGridListModule,
+  MatChipsModule,
+  MatAutocompleteModule
 } from '@angular/material';
+
 
 @NgModule({
   declarations: [],
@@ -37,7 +43,12 @@ import {
     MatCardModule,
     MatIconModule,
     MatDialogModule,
-    MatSliderModule
+    MatSliderModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatGridListModule,
+    MatChipsModule,
+    MatAutocompleteModule
   ],
   exports: [
     MatButtonModule,
@@ -54,7 +65,12 @@ import {
     MatCardModule,
     MatIconModule,
     MatDialogModule,
-    MatSliderModule
+    MatSliderModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatGridListModule,
+    MatChipsModule,
+    MatAutocompleteModule
   ]
 })
 export class MaterialModule { }
