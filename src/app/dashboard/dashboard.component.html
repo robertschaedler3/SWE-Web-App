@@ -8,24 +8,50 @@
         </mat-card>
     </div>
     <div class="card-col col-md-8">
-        <mat-card>
+        <mat-card class="events-panel">
             <mat-card-header>
                 <mat-card-title>Events</mat-card-title>
                 <span class="spacer"></span>
-                <button mat-raised-button color="primary">Create Event</button>
+                <button mat-raised-button (click)="createEvent()" color="primary">Create Event</button>
             </mat-card-header>
             <hr>
             <div class="row">
+                <div class="col-md-12">
 
-                <div *ngIf="events$ | async as events; else noEvents">
+                    <mat-card *ngFor="let event of api.events$ | async" class="event">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h6 class="event-author">
+                                    Author
+                                </h6>
+                                <h4 class="event-title">
+                                    {{event.title}}
+                                </h4>
+                                <p class="event-desc">
+                                    {{ (event.description.length>6)? (event.description | slice:0:140)+'...':(event.description) }}
+                                </p>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <p class="event-info">
+                                            <mat-icon class="detail-icon">location_on</mat-icon>
+                                            location
+                                        </p>
 
-
+                                    </div>
+                                    <div class="col-md-8">
+                                        <p class="event-info">
+                                            <mat-icon class="detail-icon">today</mat-icon>
+                                            {{event.day | date:'MM/yy'}} {{event.start}}-{{event.end}}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                image & details dialog for rsvp/sub to tags
+                            </div>
+                        </div>
+                    </mat-card>
                 </div>
-                <ng-template #noEvents>
-                    <div class="col-md-12">
-                        No events
-                    </div>
-                </ng-template>
             </div>
         </mat-card>
     </div>

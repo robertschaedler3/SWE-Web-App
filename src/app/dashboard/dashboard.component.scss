@@ -7,11 +7,46 @@ hr {
   // background-color: #eee;
 }
 
-mat-card {
+.events-panel {
   color: #333;
   background-color: #dddddd;
   // color: #fff;
   // background-color: #4e4e4e;
+}
+
+.event {
+  margin-bottom: 1rem;
+}
+
+.event-title {
+  font-size: 15px;
+  margin-bottom: 0rem;
+}
+
+.event-author {
+  font-size: 10px;
+  font-weight: 800;
+  margin-bottom: 0rem;
+  text-transform: uppercase;
+}
+
+p {
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 15px;
+}
+
+.event-info {
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 15px;
+  margin-bottom: 0rem;
+}
+
+.detail-icon {
+  color: #333;
+  display: inline-flex;
+  vertical-align: middle;
 }
 
 .spacer {
