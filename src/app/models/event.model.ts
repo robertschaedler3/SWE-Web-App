@@ -1,7 +1,7 @@
 import { Location } from './location.interface';
 import { Tag } from './tag.interface';
 
-export interface Event {
+export interface StevensEvent {
     id: number;
     title: string;
     description: string;
