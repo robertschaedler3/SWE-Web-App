@@ -12,15 +12,14 @@
         <div class="img-container col-md-12">
             <img class="logo" src="assets/images/logo-full.png" alt="">
         </div>
-        <mat-form-field class="col-md-12" color="accent" appearance="outline">
-            <mat-label>you@stevens.edu</mat-label>
-            <input matInput type="email">
-        </mat-form-field>
         <div class="button-container">
             <button mat-raised-button color="primary" type="button" (click)="auth.googleSignin()">
                 <img class="button-logo" src="assets/images/button-logo.png" alt="">
                 Sign in with Stevens
             </button>
+        </div>
+        <div *ngIf="auth.invalidCredential" class="col-md-12 error-message">
+            <p>A valid <strong>Stevens</strong> email is required.</p>
         </div>
     </form>
 </div>
