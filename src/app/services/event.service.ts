@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { map, tap } from 'rxjs/operators';
 import * as _ from 'lodash';
-import { Event } from '../interfaces/event.interface';
+import { StevensEvent } from '../models/event.model';
 
 
 @Injectable({
@@ -11,20 +11,20 @@ import { Event } from '../interfaces/event.interface';
 })
 export class EventService {
 
-  public events$: Observable<Event[]>;
+  public events$: Observable<StevensEvent[]>;
 
   constructor(private http: HttpClient) { }
 
   public getEvents() {
     // TODO: Add pagination/dynamic query on scroll
-    return this.events$ = this.http.get<Event>(`/api/events`).pipe(
+    return this.events$ = this.http.get<StevensEvent>(`/api/events`).pipe(
       map(data => _.values(data)),
       tap(console.log),
     );
   }
 
-  public createEvent(data: Event) {
-    return this.http.post<Event>(`/api/events`, data);
+  public createEvent(data: StevensEvent) {
+    return this.http.post<StevensEvent>(`/api/events`, data);
   }
 
 }

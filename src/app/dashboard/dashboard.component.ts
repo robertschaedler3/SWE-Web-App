@@ -3,7 +3,9 @@ import { EventService } from '../services/event.service';
 import { CreateEventDialogComponent } from '../create-event-dialog/create-event-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 
-import { Event } from '../interfaces/event.interface';
+import { StevensEvent } from '../models/event.model';
+import { AuthService } from '../services/auth.service';
+import { take, map, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,12 +15,12 @@ import { Event } from '../interfaces/event.interface';
 export class DashboardComponent implements OnInit {
 
   constructor(
+    public auth: AuthService,
     public api: EventService,
     public dialog: MatDialog
   ) { }
 
   ngOnInit() {
-    this.api.getEvents();
   }
 
   public createEvent() {
@@ -27,7 +29,7 @@ export class DashboardComponent implements OnInit {
       data: {}
     });
 
-    dialogRef.afterClosed().subscribe((result: Event) => {
+    dialogRef.afterClosed().subscribe((result: StevensEvent) => {
       this.api.createEvent(result).subscribe(result => console.log(result));
     });
   }

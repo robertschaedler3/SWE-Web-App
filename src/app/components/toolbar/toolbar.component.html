@@ -12,8 +12,9 @@
     </form>
     <span class="spacer"></span>
     <span>
-        <button mat-icon-button>
-            <mat-icon>tune</mat-icon>
+        <button mat-raised-button (click)="auth.signOut()">
+            <mat-icon inline="true">lock</mat-icon>
+            Sign Out
         </button>
     </span>
 </mat-toolbar>

@@ -5,6 +5,9 @@
                 <mat-card-title>People</mat-card-title>
             </mat-card-header>
             <hr>
+            <div *ngIf="auth.user$ | async as user">
+                <pre> {{user | json}} </pre>
+            </div>
         </mat-card>
     </div>
     <div class="card-col col-md-8">
