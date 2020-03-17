@@ -1,13 +1,11 @@
-<div class="row mat-typography">
+<div *ngIf="auth.user$ | async as user" class="row mat-typography">
     <div class="card-col col-md-4">
         <mat-card>
             <mat-card-header>
                 <mat-card-title>People</mat-card-title>
             </mat-card-header>
             <hr>
-            <div *ngIf="auth.user$ | async as user">
-                <pre> {{user | json}} </pre>
-            </div>
+            <pre> {{user | json}} </pre>
         </mat-card>
     </div>
     <div class="card-col col-md-8">
@@ -15,7 +13,7 @@
             <mat-card-header>
                 <mat-card-title>Events</mat-card-title>
                 <span class="spacer"></span>
-                <button mat-raised-button (click)="createEvent()" color="primary" class="create-button">
+                <button mat-raised-button (click)="createEvent(user)" color="primary" class="create-button">
                     <mat-icon inline="true">add</mat-icon>
                     Create
                 </button>
@@ -50,7 +48,8 @@
                                     <div class="col-md-7">
                                         <p class="event-info">
                                             <mat-icon class="detail-icon">today</mat-icon>
-                                            {{event.start.toDate() | date:'MM/yy'}}
+                                            {{event.start.toDate() | date:'MM/dd hh:mm'}} -
+                                            {{event.end.toDate() | date:'hh:mm'}}
                                         </p>
                                     </div>
                                 </div>

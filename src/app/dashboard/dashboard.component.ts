@@ -5,7 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 
 import { StevensEvent } from '../models/event.model';
 import { AuthService } from '../services/auth.service';
-import { take, map, tap } from 'rxjs/operators';
+import { User } from '../models/user.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -23,15 +23,14 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
   }
 
-  public createEvent() {
+  public createEvent(user: User) {
     const dialogRef = this.dialog.open(CreateEventDialogComponent, {
       width: '500px',
-      data: {}
+      data: { author: user.displayName, uid: user.uid }
     });
 
     dialogRef.afterClosed().subscribe((result: StevensEvent) => {
-      this.events.createEvent(result);
-      // this.api.createEvent(result).subscribe(result => console.log(result));
+      if (result) this.events.createEvent(result);
     });
   }
 
