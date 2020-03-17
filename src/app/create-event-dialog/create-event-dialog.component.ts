@@ -8,7 +8,7 @@ import { MatChipInputEvent } from '@angular/material/chips';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 
-import { Event } from '../interfaces/event.interface';
+import { StevensEvent } from '../models/event.model';
 
 export interface DialogData {
   success: boolean;
@@ -67,8 +67,8 @@ export class CreateEventDialogComponent implements OnInit {
 
   public create(): void {
     // TODO: form validation
-    const value: Event = this.eventForm.value;
-    value.tags = this.tags;
+    const value: StevensEvent = this.eventForm.value;
+    // value.tags = this.tags;
     console.log(value);
     this.dialogRef.close(value);
   }
