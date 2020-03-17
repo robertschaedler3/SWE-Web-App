@@ -11,7 +11,24 @@ import { map, startWith } from 'rxjs/operators';
 import { StevensEvent } from '../models/event.model';
 
 export interface DialogData {
-  success: boolean;
+  author: string;
+  uid: string;
+}
+
+export interface FormData {
+  title: string;
+  description: string;
+  day: Date;
+  start: number;
+  end: number;
+  building: string;
+  room: number;
+}
+
+export interface EventTime {
+  str: string;
+  hour: number;
+  min: number;
 }
 
 @Component({
@@ -22,7 +39,7 @@ export interface DialogData {
 export class CreateEventDialogComponent implements OnInit {
 
   eventForm: FormGroup;
-  times: string[] = [];
+  times: EventTime[] = [];
 
   visible = true;
   selectable = true;
@@ -48,16 +65,16 @@ export class CreateEventDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.times = this.generateTimes();
+    // TODO: form validation
     this.eventForm = this.fb.group({
       title: '',
       description: '',
       day: `${new Date()}`,
-      start: this.times[0],
-      end: this.times[0],
+      start: 0,
+      end: 0,
       building: '',
       room: null,
     })
-    // this.eventForm.valueChanges.subscribe(console.log);
   }
 
   public onNoClick(): void {
@@ -66,11 +83,28 @@ export class CreateEventDialogComponent implements OnInit {
   }
 
   public create(): void {
-    // TODO: form validation
-    const value: StevensEvent = this.eventForm.value;
+    const { title, description, day, start, end, building, room }: FormData = this.eventForm.value;
+
+    let event_start = new Date(day);
+    let event_end = new Date(day);
+    let s = this.times[start];
+    let e = this.times[end];
+    event_start.setHours(s.hour, s.min);
+    event_end.setHours(e.hour, e.min);
+
+    const event: StevensEvent = {
+      title,
+      description,
+      start: event_start,
+      end: event_end,
+      building,
+      room,
+      author: this.data.author,
+      authorId: this.data.uid
+    }
     // value.tags = this.tags;
-    console.log(value);
-    this.dialogRef.close(value);
+    console.log(event);
+    this.dialogRef.close(event);
   }
 
   private pad(num: number, size: number): string {
@@ -79,13 +113,18 @@ export class CreateEventDialogComponent implements OnInit {
     return s;
   }
 
-  private generateTimes(): string[] {
-    let times: string[] = [];
+  private generateTimes(): EventTime[] {
+    let times: EventTime[] = [];
     for (let i: number = 0; i < 2; i++) {
       let suffix: string = (i == 0) ? 'am' : 'pm';
       for (let hour: number = 1; hour <= 12; hour++) {
         for (let min: number = 0; min <= 45; min += 15) {
-          times.push(`${hour}:${this.pad(min, 2)}${suffix}`);
+          // push EventTime object for easy date construction on event creation
+          times.push({
+            str: `${hour}:${this.pad(min, 2)}${suffix}`,
+            hour: suffix === 'pm' ? hour + 12 : hour,
+            min: min
+          });
         }
       }
     }
@@ -128,6 +167,5 @@ export class CreateEventDialogComponent implements OnInit {
 
     return this.allTags.filter(tag => tag.toLowerCase().indexOf(filterValue) === 0);
   }
-
 
 }

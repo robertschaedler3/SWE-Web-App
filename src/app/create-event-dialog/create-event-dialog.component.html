@@ -1,6 +1,5 @@
 <!-- <h4 mat-dialog-title>Create a new event</h4> -->
 <mat-dialog-content class="mat-typography">
-
     <form [formGroup]="eventForm">
         <mat-form-field appearance="standard">
             <mat-label>Title</mat-label>
@@ -22,7 +21,7 @@
                 <mat-form-field appearance="fill">
                     <mat-label>Start</mat-label>
                     <mat-select formControlName="start">
-                        <mat-option *ngFor="let time of times" [value]="time">{{time}}</mat-option>
+                        <mat-option *ngFor="let time of times; let i = index" [value]="i">{{time.str}}</mat-option>
                     </mat-select>
                 </mat-form-field>
             </mat-grid-tile>
@@ -30,7 +29,7 @@
                 <mat-form-field appearance="fill">
                     <mat-label>End</mat-label>
                     <mat-select formControlName="end">
-                        <mat-option *ngFor="let time of times" [value]="time">{{time}}</mat-option>
+                        <mat-option *ngFor="let time of times; let i = index" [value]="i">{{time.str}}</mat-option>
                     </mat-select>
                 </mat-form-field>
             </mat-grid-tile>
