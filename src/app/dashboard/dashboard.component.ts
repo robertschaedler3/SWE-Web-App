@@ -16,7 +16,7 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     public auth: AuthService,
-    public api: EventService,
+    public events: EventService,
     public dialog: MatDialog
   ) { }
 
@@ -30,7 +30,8 @@ export class DashboardComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((result: StevensEvent) => {
-      this.api.createEvent(result).subscribe(result => console.log(result));
+      this.events.createEvent(result);
+      // this.api.createEvent(result).subscribe(result => console.log(result));
     });
   }
 
