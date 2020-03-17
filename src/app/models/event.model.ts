@@ -1,16 +1,9 @@
-import { Location } from './location.interface';
-import { Tag } from './tag.interface';
-
 export interface StevensEvent {
     id: number;
     title: string;
     description: string;
-    day: Date;
-    start_time: string;
-    end_time: string;
-    // location: Location;
+    start: Date;
+    end: Date;
     building: string;
     room: number;
-    // tags: Tag[];
-    tags: string[];
 }
