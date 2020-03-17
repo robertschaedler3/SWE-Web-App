@@ -12,7 +12,8 @@ import { auth } from 'firebase';
 })
 export class AuthService {
 
-  user$: Observable<User>
+  user$: Observable<User>;
+  invalidCredential: boolean = false;
 
   constructor(
     private afAuth: AngularFireAuth,
@@ -33,24 +34,57 @@ export class AuthService {
   async googleSignin() {
     const provider = new auth.GoogleAuthProvider();
     const credential = await this.afAuth.auth.signInWithPopup(provider);
-    return this.updateUserData(credential.user);
+    if (credential.user.email.endsWith('@stevens.edu')) {
+      return this.updateUserData(credential.user);
+    }
+    this.invalidCredential = true;
   }
 
   async signOut() {
-    this.afAuth.auth.signOut();
-    return this.router.navigate(['/login']);
+    this.router.navigate(['/login']);
+    return this.afAuth.auth.signOut();
   }
 
-  private updateUserData({ uid, displayName, email, photoURL }: User) {
+  private updateUserData({ uid, displayName, email, photoURL }) {
     const userRef: AngularFirestoreDocument<User> = this.afs.doc(`user/${uid}`);
     const data = {
       uid,
       displayName,
       email,
-      photoURL
+      photoURL,
+      roles: {
+        student: true
+      }
     };
-
+    this.router.navigate(['/dashboard']);
     return userRef.set(data, { merge: true });
   }
+
+  public canRead(user: User): boolean {
+    const allowed = ['admin', 'organizer', 'student'];
+    return this.checkAuthorization(user, allowed);
+  }
+
+  public canEdit(user: User): boolean {
+    const allowed = ['admin', 'organizer'];
+    return this.checkAuthorization(user, allowed);
+  }
+
+  public canDelete(user: User): boolean {
+    const allowed = ['admin', 'organizer'];
+    return this.checkAuthorization(user, allowed);
+  }
+
+
+  private checkAuthorization(user: User, allowedRoles: string[]): boolean {
+    if (!user) return false
+    for (const role of allowedRoles) {
+      if (user.roles[role]) {
+        return true;
+      }
+    }
+    return false;
+  }
+
 
 }
