@@ -1,7 +1,7 @@
 export interface StevensEvent {
-    id: number;
     title: string;
     description: string;
+    author: string;
     start: Date;
     end: Date;
     building: string;
