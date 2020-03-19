@@ -16,7 +16,10 @@ export class EventService {
   constructor(
     private afs: AngularFirestore,
   ) {
-    this.upcoming$ = this.afs.collection<StevensEvent>('/event').valueChanges();
+    // this.upcoming$ = this.afs.collection<StevensEvent>('/event').valueChanges();
+    let now = new Date();
+    let future = new Date(now.getTime() + 604800000);
+    this.upcoming$ = this.afs.collection<StevensEvent>('/event', ref => ref.orderBy('start').startAt(now).endAt(future)).valueChanges();
   }
 
   public createEvent(data: StevensEvent) {
