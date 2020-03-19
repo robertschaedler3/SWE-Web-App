@@ -6,8 +6,16 @@
     <form class="spacer search">
         <mat-form-field class="full-width" appearance="outline">
             <mat-label>Search</mat-label>
-            <input matInput placeholder="Ex: Last Wednesday">
+            <input matInput placeholder="Ex: Last Wednesday" (keydown)="search($event)" [matAutocomplete]="auto">
             <mat-icon matSuffix>search</mat-icon>
+            <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let result of results" [value]="result.title">
+                    <small>{{result.start.toDate() | date:"MM/dd"}} </small>
+                    <span> {{result.title}}
+                    </span>
+                    <!-- <small>{{result.author}}</small> -->
+                </mat-option>
+            </mat-autocomplete>
         </mat-form-field>
     </form>
     <span class="spacer"></span>
