@@ -8,12 +8,14 @@ import { MainLayoutRoutingModule } from './main-layout-routing.module';
 import { DashboardComponent } from 'src/app/dashboard/dashboard.component';
 import { CreateEventDialogComponent } from 'src/app/create-event-dialog/create-event-dialog.component';
 import { EventDetailsDialogComponent } from '../../event-details-dialog/event-details-dialog.component';
+import { EventDetailsComponent } from '../../event-details/event-details.component';
 
 @NgModule({
   declarations: [
     DashboardComponent,
     CreateEventDialogComponent,
-    EventDetailsDialogComponent
+    EventDetailsDialogComponent,
+    EventDetailsComponent
   ],
   imports: [
     CommonModule,
