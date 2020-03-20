@@ -13,7 +13,8 @@
             <mat-card-header>
                 <mat-card-title>Upcoming Events</mat-card-title>
                 <span class="spacer"></span>
-                <button mat-raised-button (click)="createEvent(user)" color="primary" class="create-button">
+                <button *ngIf="auth.canEdit(user)" mat-raised-button (click)="createEvent(user)" color="primary"
+                    class="create-button">
                     <mat-icon inline="true">add</mat-icon>
                     Create
                 </button>
