@@ -12,7 +12,7 @@ export class SearchService {
 
   public getEvents(start: string, end: string): Observable<StevensEvent[]> {
     let now = new Date();
-    let future = new Date(now.getTime() + 604800000);
+    let future = new Date(now.getTime() + 60480000);
 
     return this.afs.collection<StevensEvent>('/event', ref => ref.orderBy('title').orderBy('start').startAt(start, now).endAt(end, future).limit(10)).valueChanges({ idField: 'id' });
   }

@@ -5,5 +5,5 @@ export interface EventTag {
 
 export interface Tag {
     name: string;
-    color: string;
+    color?: string;
 }

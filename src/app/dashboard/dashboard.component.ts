@@ -19,7 +19,9 @@ export class DashboardComponent implements OnInit {
     public auth: AuthService,
     public events: EventService,
     public dialog: MatDialog
-  ) { }
+  ) {
+    this.events.getEvents();
+  }
 
   ngOnInit() {
   }

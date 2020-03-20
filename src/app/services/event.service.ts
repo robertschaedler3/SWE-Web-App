@@ -1,14 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import * as _ from 'lodash';
 import { StevensEvent } from '../models/event.model';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { DialogResult } from '../create-event-dialog/create-event-dialog.component';
-
-interface EventTag {
-  tagId: string;
-  eventId: string;
-}
+import { switchMap } from 'rxjs/operators';
+import { EventTag, Tag } from '../models/tag.model';
+import { firestore } from 'firebase';
 
 @Injectable({
   providedIn: 'root'
@@ -19,11 +17,7 @@ export class EventService {
 
   constructor(
     private afs: AngularFirestore,
-  ) {
-    let now = new Date();
-    let future = new Date(now.getTime() + 6048000000);
-    this.upcoming$ = this.afs.collection<StevensEvent>('/event', ref => ref.orderBy('start').startAt(now).endAt(future)).valueChanges({ idField: 'id' });
-  }
+  ) { }
 
   public createEvent(data: DialogResult) {
     console.log(data);
@@ -35,8 +29,27 @@ export class EventService {
           eventId: event.id
         }, { merge: true });
       });
-
     });
+  }
+
+  public getEvents(): Observable<StevensEvent[]> {
+    let now = new Date();
+    let future = new Date(now.getTime() + 604800000);
+    return this.upcoming$ = this.afs.collection<StevensEvent>('/event', ref => ref.orderBy('start').startAt(now).endAt(future)).valueChanges({ idField: 'id' });
+  }
+
+  public getTags(eventId: string): Observable<Tag[]> {
+    return this.afs.collection<EventTag>('/event_tags', ref => ref.where('eventId', '==', eventId)).get().pipe(
+      switchMap(eventTags => {
+        let tagIds: string[] = [];
+        eventTags.forEach(t => tagIds.push(t.data().tagId));
+        if (tagIds.length > 0) {
+          return this.afs.collection<Tag>('tag', ref => ref.where(firestore.FieldPath.documentId(), 'in', tagIds)).valueChanges();
+        } else {
+          return of(null);
+        }
+      })
+    );
   }
 
 }
