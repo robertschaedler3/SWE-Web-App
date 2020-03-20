@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { StevensEvent } from '../models/event.model';
 import { Observable } from 'rxjs';
 
@@ -14,6 +14,6 @@ export class SearchService {
     let now = new Date();
     let future = new Date(now.getTime() + 604800000);
 
-    return this.afs.collection<StevensEvent>('/event', ref => ref.orderBy('title').orderBy('start').startAt(start, now).endAt(end, future)).valueChanges();
+    return this.afs.collection<StevensEvent>('/event', ref => ref.orderBy('title').orderBy('start').startAt(start, now).endAt(end, future).limit(10)).valueChanges({ idField: 'id' });
   }
 }
