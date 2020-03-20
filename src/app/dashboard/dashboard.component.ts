@@ -3,7 +3,6 @@ import { EventService } from '../services/event.service';
 import { CreateEventDialogComponent, DialogResult } from '../create-event-dialog/create-event-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 
-import { StevensEvent } from '../models/event.model';
 import { AuthService } from '../services/auth.service';
 import { User } from '../models/user.model';
 import { EventDetailsDialogComponent } from '../event-details-dialog/event-details-dialog.component';
