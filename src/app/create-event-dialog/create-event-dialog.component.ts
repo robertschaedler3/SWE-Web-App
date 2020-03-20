@@ -9,6 +9,17 @@ import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 
 import { StevensEvent } from '../models/event.model';
+import { AngularFirestore } from '@angular/fire/firestore';
+
+export interface Tag {
+  id: string;
+  str: string;
+}
+
+export interface DialogResult {
+  event: StevensEvent;
+  tags: Tag[]
+}
 
 export interface DialogData {
   author: string;
@@ -46,9 +57,11 @@ export class CreateEventDialogComponent implements OnInit {
   removable = true;
   separatorKeysCodes: number[] = [ENTER, COMMA];
   tagCtrl = new FormControl();
-  filteredTags: Observable<string[]>;
-  tags: string[] = ['Gregg'];
-  allTags: string[] = ['Python', 'SEC', 'SSW', 'Hackathon', 'Office Hours'];
+  filteredTags: Observable<Tag[]>;
+  tags: Tag[] = [];
+  allTags: Tag[] = [];
+  tagList: Tag[] = [];
+
 
   @ViewChild('tagInput') tagInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
@@ -56,7 +69,8 @@ export class CreateEventDialogComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<CreateEventDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private afs: AngularFirestore
   ) {
     this.filteredTags = this.tagCtrl.valueChanges.pipe(
       startWith(null),
@@ -73,8 +87,13 @@ export class CreateEventDialogComponent implements OnInit {
       start: 0,
       end: 0,
       building: '',
-      room: null,
+      room: null
     })
+    this.afs.collection('/tag').get().subscribe(tags => {
+      tags.docs.forEach(doc => {
+        this.allTags.push({ id: doc.id, str: doc.data().name });
+      })
+    });
   }
 
   public onNoClick(): void {
@@ -92,19 +111,21 @@ export class CreateEventDialogComponent implements OnInit {
     event_start.setHours(s.hour, s.min);
     event_end.setHours(e.hour, e.min);
 
-    const event: StevensEvent = {
-      title,
-      description,
-      start: event_start,
-      end: event_end,
-      building,
-      room,
-      author: this.data.author,
-      authorId: this.data.uid
+    const result: DialogResult = {
+      event: {
+        title,
+        description,
+        start: event_start,
+        end: event_end,
+        building,
+        room,
+        author: this.data.author,
+        authorId: this.data.uid
+      },
+      tags: this.tags
     }
-    // value.tags = this.tags;
-    console.log(event);
-    this.dialogRef.close(event);
+
+    this.dialogRef.close(result);
   }
 
   private pad(num: number, size: number): string {
@@ -135,9 +156,20 @@ export class CreateEventDialogComponent implements OnInit {
     const input = event.input;
     const value = event.value;
 
+    let selected: Tag;
+    for (let i = 0; i < this.allTags.length; i++) {
+      if (this.allTags[i].id === value) {
+        selected = this.allTags[i];
+        break;
+      }
+    }
+    if (!selected) return;
+
     // Add the tag
     if ((value || '').trim()) {
-      this.tags.push(value.trim());
+      const index = this.allTags.indexOf(selected);
+      this.allTags.splice(index, 1);
+      this.tags.push(selected);
     }
 
     // Reset the input value
@@ -148,24 +180,40 @@ export class CreateEventDialogComponent implements OnInit {
     this.tagCtrl.setValue(null);
   }
 
-  remove(tag: string): void {
+  remove(tag: Tag): void {
     const index = this.tags.indexOf(tag);
 
     if (index >= 0) {
       this.tags.splice(index, 1);
+      this.allTags.push(tag);
     }
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
-    this.tags.push(event.option.viewValue);
-    this.tagInput.nativeElement.value = '';
-    this.tagCtrl.setValue(null);
+    const val = event.option.viewValue;
+    console.log(val);
+    let selected: Tag = null;
+    for (let i = 0; i < this.allTags.length; i++) {
+      if (this.allTags[i].str.toLowerCase() === val.toLowerCase()) {
+        selected = this.allTags[i];
+        break;
+      }
+    }
+
+    if (!selected) return;
+
+    const index = this.allTags.indexOf(selected);
+    if (index >= 0) {
+      this.allTags.splice(index, 1);
+      this.tags.push(selected);
+      this.tagInput.nativeElement.value = '';
+      this.tagCtrl.setValue(null);
+    }
   }
 
-  private _filter(value: string): string[] {
+  private _filter(value: string): Tag[] {
     const filterValue = value.toLowerCase();
-
-    return this.allTags.filter(tag => tag.toLowerCase().indexOf(filterValue) === 0);
+    return this.allTags.filter(tag => tag.str.toLowerCase().indexOf(filterValue) === 0);
   }
 
 }
