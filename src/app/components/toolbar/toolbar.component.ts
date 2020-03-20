@@ -4,11 +4,13 @@ import { SearchService } from 'src/app/services/search.service';
 import { StevensEvent } from 'src/app/models/event.model';
 import { MatAutocompleteSelectedEvent } from '@angular/material';
 import { Router } from '@angular/router';
+import { fader } from 'src/app/animations/load-animation';
 
 @Component({
   selector: 'app-toolbar',
   templateUrl: './toolbar.component.html',
-  styleUrls: ['./toolbar.component.scss']
+  styleUrls: ['./toolbar.component.scss'],
+  animations: [fader]
 })
 export class ToolbarComponent implements OnInit {
 

@@ -1,62 +1,66 @@
-<div *ngIf="auth.user$ | async as user" class="row mat-typography">
-    <div class="card-col col-md-4">
+<div class="row mat-typography">
+
+    <div @fader class="card-col col-md-4">
         <mat-card>
             <mat-card-header>
                 <mat-card-title>People</mat-card-title>
             </mat-card-header>
             <hr>
-            <pre> {{user | json}} </pre>
         </mat-card>
     </div>
-    <div class="card-col col-md-8">
+    <div @fader class="card-col col-md-8">
         <mat-card class="events-panel">
             <mat-card-header>
                 <mat-card-title>Upcoming Events</mat-card-title>
                 <span class="spacer"></span>
-                <button *ngIf="auth.canEdit(user)" mat-raised-button (click)="createEvent(user)" color="primary"
-                    class="create-button">
-                    <mat-icon inline="true">add</mat-icon>
-                    Create
-                </button>
+                <div *ngIf="auth.user$ | async as user">
+                    <button *ngIf="auth.canEdit(user)" mat-raised-button (click)="createEvent(user)" color="primary"
+                        class="create-button">
+                        <mat-icon inline="true">add</mat-icon>
+                        Create
+                    </button>
+                </div>
             </mat-card-header>
             <hr>
             <div class="row">
                 <div class="col-md-12">
                     <div *ngIf="events.upcoming$ | async as events; else loadingEvents">
-                        <mat-card *ngFor="let event of events" class="event" (click)="displayDetails(event)">
-                            <div class="row">
-                                <div class="col-md-8">
-                                    <h6 class="event-author">
-                                        {{event.author}}
-                                    </h6>
-                                    <h4 class="event-title">
-                                        {{event.title}}
-                                    </h4>
-                                    <p class="event-desc">
-                                        {{ (event.description.length>6)? (event.description | slice:0:140)+'...':(event.description) }}
-                                    </p>
-                                    <div class="row">
-                                        <div class="col-md-5">
-                                            <p class="event-info">
-                                                <mat-icon class="detail-icon">location_on</mat-icon>
-                                                {{event.building}}: {{event.room}}
-                                            </p>
+                        <div [@cardListFader]="events.length">
+                            <mat-card *ngFor="let event of events" class="event" (click)="displayDetails(event)">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <h6 class="event-author">
+                                            {{event.author}}
+                                        </h6>
+                                        <h4 class="event-title">
+                                            {{event.title}}
+                                        </h4>
+                                        <p class="event-desc">
+                                            {{ (event.description.length>6)? (event.description | slice:0:140)+'...':(event.description) }}
+                                        </p>
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                <p class="event-info">
+                                                    <mat-icon class="detail-icon">location_on</mat-icon>
+                                                    {{event.building}}: {{event.room}}
+                                                </p>
 
-                                        </div>
-                                        <div class="col-md-7">
-                                            <p class="event-info">
-                                                <mat-icon class="detail-icon">today</mat-icon>
-                                                {{event.start.toDate() | date:'MM/dd hh:mm'}} -
-                                                {{event.end.toDate() | date:'hh:mm'}}
-                                            </p>
+                                            </div>
+                                            <div class="col-md-7">
+                                                <p class="event-info">
+                                                    <mat-icon class="detail-icon">today</mat-icon>
+                                                    {{event.start.toDate() | date:'MM/dd hh:mm'}} -
+                                                    {{event.end.toDate() | date:'hh:mm'}}
+                                                </p>
+                                            </div>
                                         </div>
                                     </div>
+                                    <div class="col-md-4">
+                                        <!-- <img [src]="user.photoURL"> -->
+                                    </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <img [src]="user.photoURL">
-                                </div>
-                            </div>
-                        </mat-card>
+                            </mat-card>
+                        </div>
                     </div>
                     <ng-template #loadingEvents>
                         <mat-progress-bar mode="query"></mat-progress-bar>
