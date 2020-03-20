@@ -18,6 +18,10 @@ hr {
   margin-bottom: 1rem;
 }
 
+mat-card .event {
+  cursor: pointer !important;
+}
+
 .event-title {
   font-size: 15px;
   margin-bottom: 0rem;
@@ -55,4 +59,9 @@ p {
 
 .create-button {
   margin-bottom: 0.25rem;
+}
+
+img {
+  max-height: 100px;
+  max-width: 200px;
 }
