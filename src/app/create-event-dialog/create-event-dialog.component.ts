@@ -5,20 +5,22 @@ import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 
 import { MatAutocompleteSelectedEvent, MatAutocomplete } from '@angular/material/autocomplete';
 import { MatChipInputEvent } from '@angular/material/chips';
+
+import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 
 import { StevensEvent } from '../models/event.model';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { Tag } from '../models/tag.model';
 
-export interface Tag {
+export interface TagChip {
   id: string;
-  str: string;
+  name: string;
 }
 
 export interface DialogResult {
   event: StevensEvent;
-  tags: Tag[]
+  tags: Tag[];
 }
 
 export interface DialogData {
@@ -57,10 +59,10 @@ export class CreateEventDialogComponent implements OnInit {
   removable = true;
   separatorKeysCodes: number[] = [ENTER, COMMA];
   tagCtrl = new FormControl();
-  filteredTags: Observable<Tag[]>;
-  tags: Tag[] = [];
-  allTags: Tag[] = [];
-  tagList: Tag[] = [];
+  filteredTags: Observable<TagChip[]>;
+  tags: TagChip[] = [];
+  allTags: TagChip[] = [];
+  tagList: TagChip[] = [];
 
 
   @ViewChild('tagInput') tagInput: ElementRef<HTMLInputElement>;
@@ -91,7 +93,7 @@ export class CreateEventDialogComponent implements OnInit {
     })
     this.afs.collection('/tag').get().subscribe(tags => {
       tags.docs.forEach(doc => {
-        this.allTags.push({ id: doc.id, str: doc.data().name });
+        this.allTags.push({ id: doc.id, name: doc.data().name });
       })
     });
   }
@@ -156,7 +158,7 @@ export class CreateEventDialogComponent implements OnInit {
     const input = event.input;
     const value = event.value;
 
-    let selected: Tag;
+    let selected: TagChip;
     for (let i = 0; i < this.allTags.length; i++) {
       if (this.allTags[i].id === value) {
         selected = this.allTags[i];
@@ -180,7 +182,7 @@ export class CreateEventDialogComponent implements OnInit {
     this.tagCtrl.setValue(null);
   }
 
-  remove(tag: Tag): void {
+  remove(tag: TagChip): void {
     const index = this.tags.indexOf(tag);
 
     if (index >= 0) {
@@ -192,9 +194,9 @@ export class CreateEventDialogComponent implements OnInit {
   selected(event: MatAutocompleteSelectedEvent): void {
     const val = event.option.viewValue;
     console.log(val);
-    let selected: Tag = null;
+    let selected: TagChip = null;
     for (let i = 0; i < this.allTags.length; i++) {
-      if (this.allTags[i].str.toLowerCase() === val.toLowerCase()) {
+      if (this.allTags[i].name.toLowerCase() === val.toLowerCase()) {
         selected = this.allTags[i];
         break;
       }
@@ -211,9 +213,9 @@ export class CreateEventDialogComponent implements OnInit {
     }
   }
 
-  private _filter(value: string): Tag[] {
+  private _filter(value: string): TagChip[] {
     const filterValue = value.toLowerCase();
-    return this.allTags.filter(tag => tag.str.toLowerCase().indexOf(filterValue) === 0);
+    return this.allTags.filter(tag => tag.name.toLowerCase().indexOf(filterValue) === 0);
   }
 
 }
