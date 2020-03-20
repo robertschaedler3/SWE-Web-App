@@ -11,7 +11,6 @@ import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 
 import { StevensEvent } from '../models/event.model';
-import { Tag } from '../models/tag.model';
 
 export interface TagChip {
   id: string;
@@ -20,7 +19,7 @@ export interface TagChip {
 
 export interface DialogResult {
   event: StevensEvent;
-  tags: Tag[];
+  tags: TagChip[];
 }
 
 export interface DialogData {
