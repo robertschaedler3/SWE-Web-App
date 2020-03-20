@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { SearchService } from 'src/app/services/search.service';
 import { StevensEvent } from 'src/app/models/event.model';
+import { MatAutocompleteSelectedEvent } from '@angular/material';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-toolbar',
@@ -13,9 +15,12 @@ export class ToolbarComponent implements OnInit {
   results: StevensEvent[];
   lastKeyPress: number = 0;
 
+  @ViewChild('searchInput') searchInput: ElementRef<HTMLInputElement>;
+
   constructor(
     public auth: AuthService,
-    public searchSvc: SearchService
+    public searchSvc: SearchService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -30,6 +35,11 @@ export class ToolbarComponent implements OnInit {
       });
     }
     this.lastKeyPress = $event.timeStamp;
+  }
+
+  navigateTo(value: MatAutocompleteSelectedEvent) {
+    this.router.navigate(['/details', value.option.value])
+    this.searchInput.nativeElement.value = '';
   }
 
 }
