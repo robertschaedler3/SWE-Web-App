@@ -27,11 +27,10 @@ export class ToolbarComponent implements OnInit {
   }
 
   search($event): void {
-    if ($event.timeStamp - this.lastKeyPress > 200) {
+    if ($event.timeStamp - this.lastKeyPress > 300) {
       let query = $event.target.value;
       this.searchSvc.getEvents(query, query + '\uf8ff').subscribe(results => {
         this.results = results;
-        console.log(results);
       });
     }
     this.lastKeyPress = $event.timeStamp;
