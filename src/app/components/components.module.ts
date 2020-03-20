@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 import { MaterialModule } from '../utils/material.module';
 
@@ -9,7 +10,8 @@ import { FooterComponent } from './footer/footer.component';
   declarations: [ToolbarComponent, FooterComponent],
   imports: [
     CommonModule,
-    MaterialModule
+    MaterialModule,
+    RouterModule
   ],
   exports: [
     ToolbarComponent,
