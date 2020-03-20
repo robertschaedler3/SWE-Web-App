@@ -1,1 +1,40 @@
-<p>event-details works!</p>
+<div class="row">
+    <div class="col-md-12">
+        <mat-card>
+            <div *ngIf="event$ | async as event" class="event-container">
+
+                <div class="header">
+                    <h6>{{event.author}}</h6>
+                    <h3> {{event.title}} </h3>
+                    <div class="row details">
+                        <div class="col-md-3">
+                            <div>
+                                <mat-icon inline="true">schedule</mat-icon>
+                                <span class="align-to-icon">{{event.start.toDate() | date:'MM/dd'}}
+                                    {{event.start.toDate() | date:'h:mm a'}} -
+                                    {{event.end.toDate() | date:'h:mm a'}}</span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div>
+                                <mat-icon inline="true">location_on</mat-icon>
+                                <span class="align-to-icon"> {{event.building}} {{event.room}} </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tag-list">
+                    <mat-chip-list aria-label="Tag list">
+                        <mat-chip *ngFor="let tag of tags$ | async"> {{tag.name}} </mat-chip>
+                    </mat-chip-list>
+                </div>
+
+                <div>
+                    <p> {{event.description}} </p>
+                </div>
+
+            </div>
+        </mat-card>
+    </div>
+</div>
