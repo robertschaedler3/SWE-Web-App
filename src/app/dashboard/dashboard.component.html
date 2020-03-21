@@ -38,20 +38,21 @@
                                         <p class="event-desc">
                                             {{ (event.description.length>6)? (event.description | slice:0:140)+'...':(event.description) }}
                                         </p>
-                                        <div class="row">
-                                            <div class="col-md-5">
-                                                <p class="event-info">
-                                                    <mat-icon class="detail-icon">location_on</mat-icon>
-                                                    {{event.building}}: {{event.room}}
-                                                </p>
-
+                                        <div class="row details">
+                                            <div class="col-md-6">
+                                                <div>
+                                                    <mat-icon inline="true">schedule</mat-icon>
+                                                    <span class="align-to-icon">{{event.start.toDate() | date:'MM/dd'}}
+                                                        {{event.start.toDate() | date:'h:mm a'}} -
+                                                        {{event.end.toDate() | date:'h:mm a'}}</span>
+                                                </div>
                                             </div>
-                                            <div class="col-md-7">
-                                                <p class="event-info">
-                                                    <mat-icon class="detail-icon">today</mat-icon>
-                                                    {{event.start.toDate() | date:'MM/dd hh:mm'}} -
-                                                    {{event.end.toDate() | date:'hh:mm'}}
-                                                </p>
+                                            <div class="col-md-6">
+                                                <div>
+                                                    <mat-icon inline="true">location_on</mat-icon>
+                                                    <span class="align-to-icon"> {{event.building}} {{event.room}}
+                                                    </span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
