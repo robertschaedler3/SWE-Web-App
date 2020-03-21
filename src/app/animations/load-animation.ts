@@ -35,7 +35,7 @@ export const fadeUp =
         transition(':enter', [
             style({
                 opacity: 0,
-                transform: 'translateY(50px)'
+                transform: 'translateY(50px) rotateX(-10deg)'
             }),
             animate('400ms 100ms ease-out')
         ])
@@ -43,14 +43,14 @@ export const fadeUp =
 
 export const cardListFader =
     trigger('cardListFader', [
-        transition('* => *', [
+        transition(':enter', [
             query('mat-card', style({
-                transform: 'translateY(75px)',
+                transform: 'translateY(40px) rotate(2deg)',
                 opacity: 0
             })),
             query('mat-card',
                 stagger('100ms', [
-                    animate('500ms 100ms ease-out', style({
+                    animate('300ms 600ms ease-out', style({
                         transform: 'translateY(0px)',
                         opacity: 1
                     }))
