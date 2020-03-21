@@ -5,13 +5,13 @@ import { Observable } from 'rxjs';
 import { StevensEvent } from '../models/event.model';
 import { Tag } from '../models/tag.model';
 import { EventService } from '../services/event.service';
-import { fadeUp } from '../animations/load-animation';
+import { fadeUp, chipListFader } from '../animations/load-animation';
 
 @Component({
   selector: 'app-event-details',
   templateUrl: './event-details.component.html',
   styleUrls: ['./event-details.component.scss'],
-  animations: [fadeUp]
+  animations: [fadeUp, chipListFader]
 })
 export class EventDetailsComponent implements OnInit {
 

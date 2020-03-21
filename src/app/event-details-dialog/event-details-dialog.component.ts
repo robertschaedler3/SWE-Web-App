@@ -3,12 +3,14 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { EventService } from '../services/event.service';
 import { Tag } from '../models/tag.model';
+import { chipListFader } from '../animations/load-animation';
 
 
 @Component({
   selector: 'app-event-details-dialog',
   templateUrl: './event-details-dialog.component.html',
-  styleUrls: ['./event-details-dialog.component.scss']
+  styleUrls: ['./event-details-dialog.component.scss'],
+  animations: [chipListFader]
 })
 export class EventDetailsDialogComponent implements OnInit {
 

@@ -57,4 +57,22 @@ export const cardListFader =
                 ])
             )
         ])
+    ]);
+
+export const chipListFader =
+    trigger('chipListFader', [
+        transition('* => *', [
+            query('mat-chip', style({
+                transform: 'translateY(20px)',
+                opacity: 0
+            })),
+            query('mat-chip',
+                stagger('100ms', [
+                    animate('300ms ease-out', style({
+                        transform: 'translateY(0px)',
+                        opacity: 1
+                    }))
+                ])
+            )
+        ])
     ]); 
