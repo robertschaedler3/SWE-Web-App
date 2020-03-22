@@ -6,6 +6,7 @@ import { MaterialModule } from '../utils/material.module';
 
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { FooterComponent } from './footer/footer.component';
+
 @NgModule({
   declarations: [ToolbarComponent, FooterComponent],
   imports: [

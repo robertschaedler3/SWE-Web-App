@@ -6,11 +6,13 @@ import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from '../services/auth.service';
 import { User } from '../models/user.model';
 import { EventDetailsDialogComponent } from '../event-details-dialog/event-details-dialog.component';
+import { fader, cardListFader } from '../animations/load-animation';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  styleUrls: ['./dashboard.component.scss'],
+  animations: [fader, cardListFader]
 })
 export class DashboardComponent implements OnInit {
 

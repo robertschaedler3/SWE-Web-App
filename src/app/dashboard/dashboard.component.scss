@@ -4,16 +4,20 @@
 
 hr {
   margin-top: 0px;
-  // background-color: #eee;
 }
 
 .events-panel {
   color: #fff;
   background-color: #4e4e4e;
+  min-height: 50vh;
 }
 
 .event {
   margin-bottom: 1rem;
+
+  .align-to-icon {
+    font-size: 12px !important;
+  }
 }
 
 mat-card .event {
@@ -62,4 +66,17 @@ p {
 img {
   max-height: 100px;
   max-width: 200px;
+}
+
+.loading-spinner {
+  height: 30vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.mat-spinner {
+  height: 20px !important;
 }
