@@ -23,10 +23,11 @@ import {
   MatChipsModule,
   MatAutocompleteModule
 } from '@angular/material';
+import { MaterialElevationDirective } from '../directives/material-elevation.directive';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [MaterialElevationDirective],
   imports: [
     CommonModule,
     MatButtonModule,
@@ -70,7 +71,8 @@ import {
     MatNativeDateModule,
     MatGridListModule,
     MatChipsModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MaterialElevationDirective
   ]
 })
 export class MaterialModule { }
