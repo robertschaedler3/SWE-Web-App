@@ -61,8 +61,6 @@ export class CreateEventDialogComponent implements OnInit {
   filteredTags: Observable<TagChip[]>;
   tags: TagChip[] = [];
   allTags: TagChip[] = [];
-  tagList: TagChip[] = [];
-
 
   @ViewChild('tagInput') tagInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;

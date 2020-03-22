@@ -56,7 +56,7 @@
                     <mat-chip-list #chipList aria-label="Event tags">
                         <mat-chip *ngFor="let tag of tags" [selectable]="selectable" [removable]="removable"
                             (removed)="remove(tag)">
-                            {{tag.str}}
+                            {{tag.name}}
                             <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
                         </mat-chip>
                         <input placeholder="Add tags..." #tagInput [formControl]="tagCtrl" [matAutocomplete]="auto"
@@ -65,7 +65,7 @@
                     </mat-chip-list>
                     <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
                         <mat-option *ngFor="let tag of filteredTags | async" [value]="tag.id">
-                            {{tag.str}}
+                            {{tag.name}}
                         </mat-option>
                     </mat-autocomplete>
                 </mat-form-field>
