@@ -26,7 +26,8 @@
                 <div class="col-md-12">
                     <div *ngIf="events.upcoming$ | async as events; else loadingEvents">
                         <div [@cardListFader]="events.length">
-                            <mat-card *ngFor="let event of events" class="event" (click)="displayDetails(event)">
+                            <mat-card appMaterialElevation *ngFor="let event of events" class="event"
+                                (click)="displayDetails(event)">
                                 <div class="row">
                                     <div class="col-md-8">
                                         <h6 class="event-author">
