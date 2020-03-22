@@ -1,27 +1,33 @@
 <mat-toolbar @fader>
-    <span class="logo">
-        <a [routerLink]="['/dashboard']"><img src="assets/images/logo.png"></a>
-    </span>
-    <span class="spacer"></span>
-    <form class="spacer search">
-        <mat-form-field class="full-width" appearance="outline">
-            <mat-label>Search</mat-label>
-            <input matInput #searchInput placeholder="Ex: Last Wednesday" (keydown)="search($event)"
-                [matAutocomplete]="auto">
-            <mat-icon matSuffix>search</mat-icon>
-            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="navigateTo($event)">
-                <mat-option *ngFor="let result of results" [value]="result.id">
-                    <small>{{result.start.toDate() | date:"MM/dd"}} </small>
-                    <span> {{result.title}}</span>
-                </mat-option>
-            </mat-autocomplete>
-        </mat-form-field>
-    </form>
-    <span class="spacer"></span>
-    <span>
-        <button mat-raised-button (click)="auth.signOut()">
-            <mat-icon inline="true">lock</mat-icon>
-            Sign Out
-        </button>
-    </span>
+    <div class="container toolbar-content">
+
+        <span class="logo">
+            <a [routerLink]="['/dashboard']"><img src="assets/images/logo.png"></a>
+        </span>
+        <span class="spacer"></span>
+        <form class="spacer search">
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Search</mat-label>
+                <input matInput #searchInput placeholder="Ex: Last Wednesday" (keydown)="search($event)"
+                    [matAutocomplete]="auto">
+                <mat-icon matSuffix>search</mat-icon>
+                <mat-autocomplete #auto="matAutocomplete" (optionSelected)="navigateTo($event)">
+                    <mat-option *ngFor="let result of results" [value]="result.id">
+                        <small>{{result.start.toDate() | date:"MM/dd"}} </small>
+                        <span> {{result.title}}</span>
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+        </form>
+        <span class="spacer"></span>
+        <span class="button-group">
+            <span class="spacer"></span>
+            <button mat-button (click)="auth.signOut()">
+                <mat-icon inline="true">lock</mat-icon>
+                <span class="button-text">
+                    Sign Out
+                </span>
+            </button>
+        </span>
+    </div>
 </mat-toolbar>
