@@ -6,9 +6,13 @@ body {
 }
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: "Open Sans", "Helvetica Neue", sans-serif;
   color: #fff;
   background-color: #242424;
+}
+
+.main-content {
+  padding-top: 1rem;
 }
 
 .mat-card {
@@ -24,4 +28,19 @@ body {
   position: absolute;
   margin-bottom: 5px;
   margin-left: 5px; /* optional */
+}
+
+.card-hover {
+  transition: all 300ms ease-out !important;
+}
+
+.card-hover:hover {
+  transform: scale(1.01);
+}
+
+button:focus,
+button:active:focus,
+button.active:focus {
+  outline: none !important;
+  outline-style: none !important;
 }
