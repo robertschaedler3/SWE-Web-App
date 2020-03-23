@@ -1,7 +1,10 @@
 <mat-dialog-content class="mat-typography main-content">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12 header">
             <h2>{{data.title}}</h2>
+            <a class="close-button" (click)="close()">
+                <mat-icon inline="true">close</mat-icon>
+            </a>
         </div>
         <div class="col-md-12">
             <p> {{data.description}} </p>

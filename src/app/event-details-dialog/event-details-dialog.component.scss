@@ -21,7 +21,7 @@
 }
 
 .tag-list {
-  margin-top: 1rem;
+  margin-top: 1.5rem;
   height: 40px;
 }
 
@@ -35,4 +35,26 @@
 
 p {
   padding: 0px !important;
+}
+
+mat-divider {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.25rem;
+}
+
+.close-button {
+  margin-left: auto;
+  cursor: pointer;
+  padding: 5px;
+}
+
+h2 {
+  margin: 0;
 }

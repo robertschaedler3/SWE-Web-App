@@ -26,6 +26,10 @@ export class EventDetailsDialogComponent implements OnInit {
     this.tags$ = this.events.getTags(this.data.id);
   }
 
+  public close() {
+    this.dialogRef.close();
+  }
+
   public rsvp() {
 
   }
