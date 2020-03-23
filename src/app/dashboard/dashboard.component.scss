@@ -1,17 +1,12 @@
-.card-col {
-  padding-bottom: 1rem !important;
+mat-card {
+  padding: 0 !important;
+  background-color: #2e2e2e;
+  color: #fff;
 }
 
-hr {
-  margin-top: 0px;
+mat-card.event {
+  cursor: pointer !important;
 }
-
-.events-panel {
-  // color: #fff;
-  background-color: #eeeeee;
-  min-height: 50vh;
-}
-
 .event {
   margin-bottom: 1rem;
 
@@ -20,13 +15,13 @@ hr {
   }
 }
 
-mat-card .event {
-  cursor: pointer !important;
+.card-col {
+  margin-top: 2rem;
 }
 
 .event-title {
   font-size: 15px;
-  margin-bottom: 0rem;
+  margin-bottom: 1rem;
 }
 
 .event-author {
@@ -49,23 +44,71 @@ p {
   margin-bottom: 0rem;
 }
 
-.detail-icon {
-  color: #333;
-  display: inline-flex;
-  vertical-align: middle;
+.create-button-container {
+  position: fixed;
+  bottom: 0;
+  z-index: 11;
+  pointer-events: none;
+  width: 100%;
 }
 
-.spacer {
-  flex: 1 1 auto;
+.create-button-inner {
+  display: flex;
+  justify-content: flex-end;
 }
 
 .create-button {
-  margin-bottom: 0.25rem;
+  margin-bottom: 2rem;
+  margin-right: 2rem;
+  font-size: 20px !important;
+  pointer-events: all !important;
 }
 
 img {
-  max-height: 100px;
+  overflow: hidden;
+  border-radius: 0px 4px 4px 0px;
+}
+
+mat-card img {
+  object-fit: cover;
   max-width: 200px;
+  max-height: 100%;
+}
+
+mat-card p {
+  min-height: 35px;
+}
+
+.card-content {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .card-content {
+    height: 200px;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .card-content {
+    height: 190px;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .card-content {
+    height: 175px;
+  }
+}
+
+.card-text {
+  width: 75%;
+  padding: 1rem;
+  margin-right: 1rem;
 }
 
 .loading-spinner {
