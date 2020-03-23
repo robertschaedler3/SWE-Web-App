@@ -17,5 +17,5 @@ $theme-accent: mat-palette($mat-stevens-grey, 800, 700, 600);
 $theme-warn: mat-palette($mat-stevens-red);
 $background-color: map_get($mat-stevens-charcoal, 50);
 
-$main-theme: mat-light-theme($theme-primary, $theme-accent, $theme-warn);
+$main-theme: mat-dark-theme($theme-primary, $theme-accent, $theme-warn);
 @include angular-material-theme($main-theme);
