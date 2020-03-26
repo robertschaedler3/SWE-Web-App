@@ -23,6 +23,8 @@
                                 (click)="displayDetails(event)">
 
                                 <div class="card-content">
+                                    <img [src]="event.thumbnail">
+
                                     <div class="card-text">
                                         <h6 class="event-author">
                                             {{event.author}}
@@ -51,7 +53,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <img [src]="user.photoURL">
+
                                 </div>
                             </mat-card>
                         </div>
