@@ -7,4 +7,5 @@ export interface StevensEvent {
     end: Date;
     building: string;
     room: number;
+    thumbnail?: string;
 }
