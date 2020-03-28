@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FeedComponent } from './feed/feed.component';
 import { PeopleComponent } from './people/people.component';
 import { DiscoverComponent } from './discover/discover.component';
+import { GroupsComponent } from './groups/groups.component';
 
 
 
@@ -10,7 +11,8 @@ import { DiscoverComponent } from './discover/discover.component';
   declarations: [
     FeedComponent,
     PeopleComponent,
-    DiscoverComponent
+    DiscoverComponent,
+    GroupsComponent
   ],
   imports: [
     CommonModule,
@@ -18,7 +20,8 @@ import { DiscoverComponent } from './discover/discover.component';
   exports: [
     FeedComponent,
     PeopleComponent,
-    DiscoverComponent
+    DiscoverComponent,
+    GroupsComponent
   ]
 })
 export class ContentModule { }
