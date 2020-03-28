@@ -6,9 +6,14 @@ import { MaterialModule } from '../utils/material.module';
 
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { FooterComponent } from './footer/footer.component';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
-  declarations: [ToolbarComponent, FooterComponent],
+  declarations: [
+    ToolbarComponent,
+    FooterComponent,
+    SearchComponent
+  ],
   imports: [
     CommonModule,
     MaterialModule,
@@ -16,7 +21,8 @@ import { FooterComponent } from './footer/footer.component';
   ],
   exports: [
     ToolbarComponent,
-    FooterComponent
+    FooterComponent,
+    SearchComponent
   ]
 })
 export class ComponentModule { }
