@@ -10,7 +10,8 @@ import { CreateEventDialogComponent } from 'src/app/create-event-dialog/create-e
 import { EventDetailsDialogComponent } from '../../event-details-dialog/event-details-dialog.component';
 import { EventDetailsComponent } from '../../event-details/event-details.component';
 import { ComponentModule } from 'src/app/components/components.module';
-import { FeedComponent } from '../../feed/feed.component';
+import { FeedComponent } from '../../content/feed/feed.component';
+import { ContentModule } from 'src/app/content/content.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,6 @@ import { FeedComponent } from '../../feed/feed.component';
     CreateEventDialogComponent,
     EventDetailsDialogComponent,
     EventDetailsComponent,
-    FeedComponent,
   ],
   imports: [
     CommonModule,
@@ -26,7 +26,8 @@ import { FeedComponent } from '../../feed/feed.component';
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
-    ComponentModule
+    ComponentModule,
+    ContentModule
   ],
   entryComponents: [CreateEventDialogComponent]
 })
