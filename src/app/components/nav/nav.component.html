@@ -1,1 +1,8 @@
-<p>nav works!</p>
+<ng-container *ngIf="auth.user$ | async as user">
+    <mat-nav-list>
+        <a *ngFor="let menuItem of menuItems" mat-list-item [routerLink]="[menuItem.path]">
+            <mat-icon>{{menuItem.icon}}</mat-icon>
+            <span class="item-title">{{ menuItem.title }}</span>
+        </a>
+    </mat-nav-list>
+</ng-container>
