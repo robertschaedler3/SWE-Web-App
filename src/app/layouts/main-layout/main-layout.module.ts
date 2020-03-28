@@ -10,13 +10,15 @@ import { CreateEventDialogComponent } from 'src/app/create-event-dialog/create-e
 import { EventDetailsDialogComponent } from '../../event-details-dialog/event-details-dialog.component';
 import { EventDetailsComponent } from '../../event-details/event-details.component';
 import { ComponentModule } from 'src/app/components/components.module';
+import { FeedComponent } from '../../feed/feed.component';
 
 @NgModule({
   declarations: [
     DashboardComponent,
     CreateEventDialogComponent,
     EventDetailsDialogComponent,
-    EventDetailsComponent
+    EventDetailsComponent,
+    FeedComponent,
   ],
   imports: [
     CommonModule,
