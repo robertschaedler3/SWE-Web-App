@@ -26,25 +26,6 @@
         min-width: 50%;
         min-height: 50%;
     }
-
-    /* #red-panel {
-    position: relative;
-    animation-name: slideRed;
-    animation-duration: 0.75s;
-    animation-timing-function: ease-out;
-    animation-delay: 0s;
-  }
-
-  @keyframes slideRed {
-    0% {
-      top: 500px;
-      transform: translateY(100px);
-    }
-
-    100% {
-      transform: translateY(0);
-    }
-  } */
 </style>
 
 <div @fader class="background">
@@ -70,11 +51,11 @@
                 <rect width="1920" height="1080" />
             </clipPath>
         </defs>
-        <!-- <path id="grey" d="M0,0H1920.349V1080H0Z" transform="translate(0 0)" fill="#999" />
+        <path id="grey" d="M0,0H1920.349V1080H0Z" transform="translate(0 0)" fill="#999" />
         <g id="charcoal-panel" transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#charcoal-filter)">
             <path id="charcoal" data-name="charcoal" d="M226,2706.8V2091H2146v414L226,2706.8Z"
                 transform="translate(-226 -2091)" fill="#333" />
-        </g> -->
+        </g>
         <g id="red-panel" transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#blood-filter)">
             <path id="blood" data-name="blood" d="M2393,2444.667H473V1809l1920,338.548v297.119Z"
                 transform="translate(-473 -1364.67)" fill="#7f0112" />
@@ -82,12 +63,14 @@
     </svg>
 </div>
 
-<!-- <app-toolbar class="toolbar"></app-toolbar> -->
 <div class="container">
-    <!-- <div class="row">
-        <div class="col-md-12 logo-container">
-            <img class="logo-full" src="assets/images/logo-full.png" alt="">
+    <div class="row">
+        <app-nav class="col-md-3"></app-nav>
+        <div class="col-md-6">
+            <mat-toolbar>
+                {{getTitle()}}
+            </mat-toolbar>
+            <router-outlet></router-outlet>
         </div>
-    </div> -->
-    <router-outlet></router-outlet>
+    </div>
 </div>
