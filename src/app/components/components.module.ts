@@ -7,12 +7,14 @@ import { MaterialModule } from '../utils/material.module';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { SearchComponent } from './search/search.component';
+import { NavComponent } from './nav/nav.component';
 
 @NgModule({
   declarations: [
     ToolbarComponent,
     FooterComponent,
-    SearchComponent
+    SearchComponent,
+    NavComponent
   ],
   imports: [
     CommonModule,
