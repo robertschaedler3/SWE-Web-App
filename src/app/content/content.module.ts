@@ -4,6 +4,7 @@ import { FeedComponent } from './feed/feed.component';
 import { PeopleComponent } from './people/people.component';
 import { DiscoverComponent } from './discover/discover.component';
 import { GroupsComponent } from './groups/groups.component';
+import { SettingsComponent } from './settings/settings.component';
 
 
 
@@ -12,7 +13,8 @@ import { GroupsComponent } from './groups/groups.component';
     FeedComponent,
     PeopleComponent,
     DiscoverComponent,
-    GroupsComponent
+    GroupsComponent,
+    SettingsComponent
   ],
   imports: [
     CommonModule,
@@ -21,7 +23,8 @@ import { GroupsComponent } from './groups/groups.component';
     FeedComponent,
     PeopleComponent,
     DiscoverComponent,
-    GroupsComponent
+    GroupsComponent,
+    SettingsComponent
   ]
 })
 export class ContentModule { }
