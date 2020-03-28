@@ -1,1 +1,14 @@
-<p>search works!</p>
+<form class="search">
+    <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Search</mat-label>
+        <input matInput #searchInput placeholder="Ex: Last Wednesday" (keydown)="search($event)"
+            [matAutocomplete]="auto">
+        <mat-icon matSuffix>search</mat-icon>
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="navigateTo($event)">
+            <mat-option *ngFor="let result of results" [value]="result.id">
+                <small>{{result.start.toDate() | date:"MM/dd"}} </small>
+                <span> {{result.title}}</span>
+            </mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
+</form>
