@@ -7,6 +7,7 @@ mat-card {
 mat-card.event {
   cursor: pointer !important;
 }
+
 .event {
   margin-bottom: 1rem;
 
@@ -15,9 +16,28 @@ mat-card.event {
   }
 }
 
-.card-col {
-  margin-top: 2rem;
+.card-col-header {
+  margin-bottom: 1rem;
+  display: flex;
 }
+
+.search-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding-right: 1rem;
+}
+
+.button-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// .card-col {
+//   margin-top: 2rem;
+// }
 
 .event-title {
   font-size: 15px;
@@ -57,12 +77,12 @@ p {
   justify-content: flex-end;
 }
 
-.create-button {
-  margin-bottom: 2rem;
-  margin-right: 2rem;
-  font-size: 20px !important;
-  pointer-events: all !important;
-}
+// .create-button {
+//   margin-bottom: 2rem;
+//   margin-right: 2rem;
+//   font-size: 20px !important;
+//   pointer-events: all !important;
+// }
 
 img {
   overflow: hidden;
