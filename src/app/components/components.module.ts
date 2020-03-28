@@ -24,7 +24,8 @@ import { NavComponent } from './nav/nav.component';
   exports: [
     ToolbarComponent,
     FooterComponent,
-    SearchComponent
+    SearchComponent,
+    NavComponent
   ]
 })
 export class ComponentModule { }
