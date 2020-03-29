@@ -31,7 +31,8 @@ import { CreateComponent } from './create/create.component';
     DiscoverComponent,
     SearchComponent,
     GroupsComponent,
-    SettingsComponent
+    SettingsComponent,
+    CreateComponent
   ]
 })
 export class ContentModule { }
