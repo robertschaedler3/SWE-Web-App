@@ -7,6 +7,7 @@ import { GroupsComponent } from './groups/groups.component';
 import { SettingsComponent } from './settings/settings.component';
 import { MaterialModule } from '../utils/material.module';
 import { SearchComponent } from './search/search.component';
+import { CreateComponent } from './create/create.component';
 
 
 
@@ -17,7 +18,8 @@ import { SearchComponent } from './search/search.component';
     DiscoverComponent,
     SearchComponent,
     GroupsComponent,
-    SettingsComponent
+    SettingsComponent,
+    CreateComponent
   ],
   imports: [
     CommonModule,
