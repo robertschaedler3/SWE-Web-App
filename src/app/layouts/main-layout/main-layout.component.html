@@ -28,7 +28,7 @@
     }
 </style>
 
-<div @fader class="background">
+<!-- <div @fader class="background">
     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1920" height="1080"
         viewBox="0 0 1920 1080">
         <defs>
@@ -61,16 +61,30 @@
                 transform="translate(-473 -1364.67)" fill="#7f0112" />
         </g>
     </svg>
-</div>
+</div> -->
 
-<div class="container">
-    <div class="row">
-        <app-nav class="col-md-3"></app-nav>
-        <div class="col-md-6">
-            <mat-toolbar>
-                {{getTitle()}}
-            </mat-toolbar>
-            <router-outlet></router-outlet>
+
+<mat-sidenav-container>
+    <mat-sidenav #drawer mode="over" position="end">
+        create an event
+    </mat-sidenav>
+    <div class="toolbar-container">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    <mat-toolbar>{{getTitle()}}</mat-toolbar>
+                </div>
+            </div>
         </div>
     </div>
-</div>
+    <div class="container">
+        <div class="row">
+            <app-nav (create)="drawer.toggle()"></app-nav>
+            <div class="col-md-8 offset-md-2">
+                <div class="main-content">
+                    <router-outlet></router-outlet>
+                </div>
+            </div>
+        </div>
+    </div>
+</mat-sidenav-container>

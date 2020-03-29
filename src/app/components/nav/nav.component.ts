@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
+import { User } from 'firebase';
 
 declare interface RouteInfo {
   path: string;
@@ -24,11 +25,20 @@ export const ROUTES: RouteInfo[] = [
 export class NavComponent implements OnInit {
 
   menuItems: any[];
+  @Output() create = new EventEmitter();
+
+  createEvent() { // You can give any function name
+    this.create.emit();
+  }
 
   constructor(public auth: AuthService) { }
 
   ngOnInit(): void {
     this.menuItems = ROUTES.filter(menuItem => menuItem);
   }
+
+  // createEvent(user: User) {
+  //   console.log('create event')
+  // }
 
 }

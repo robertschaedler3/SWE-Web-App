@@ -10,6 +10,15 @@
   padding-bottom: 4rem;
 }
 
+mat-sidenav-container {
+  background-color: #242424 !important;
+}
+
+mat-sidenav {
+  background-color: #242424 !important;
+  width: 65vw;
+}
+
 app-nav {
   position: fixed;
   z-index: 10;
