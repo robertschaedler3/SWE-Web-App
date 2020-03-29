@@ -56,7 +56,7 @@ export class AuthService {
         student: true
       }
     };
-    this.router.navigate(['/upcoming']);
+    this.router.navigate(['/feed']);
     return userRef.set(data, { merge: true });
   }
 
