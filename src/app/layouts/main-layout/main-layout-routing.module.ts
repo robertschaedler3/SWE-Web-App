@@ -17,8 +17,8 @@ const routes: Routes = [
     { path: 'people', component: PeopleComponent },
     { path: 'groups', component: GroupsComponent },
     { path: 'settings', component: SettingsComponent },
-    // { path: 'details', redirectTo: 'dashboard' },
-    // { path: 'details/:eventId', component: EventDetailsComponent },
+    { path: 'details', redirectTo: 'feed' },
+    { path: 'details/:eventId', component: EventDetailsComponent },
 ];
 
 @NgModule({
