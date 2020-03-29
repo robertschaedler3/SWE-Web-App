@@ -4,13 +4,11 @@ import { RouterModule } from '@angular/router';
 
 import { MaterialModule } from '../material/material.module';
 
-import { ToolbarComponent } from './toolbar/toolbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { NavComponent } from './nav/nav.component';
 
 @NgModule({
   declarations: [
-    ToolbarComponent,
     FooterComponent,
     NavComponent
   ],
@@ -20,7 +18,6 @@ import { NavComponent } from './nav/nav.component';
     RouterModule
   ],
   exports: [
-    ToolbarComponent,
     FooterComponent,
     NavComponent
   ]
