@@ -4,12 +4,25 @@
   padding: 1rem;
 }
 
+.create-button-small {
+  visibility: hidden !important;
+}
+
+.create-button-large mat-icon {
+  margin-right: 0.5rem;
+  font-size: 18px;
+}
+
 @media only screen and (max-width: 992px) {
   .item-title {
     visibility: hidden;
   }
-  .create-text {
+  .create-button-large {
     visibility: hidden !important;
+    position: fixed;
+  }
+  .create-button-small {
+    visibility: visible !important;
   }
 }
 

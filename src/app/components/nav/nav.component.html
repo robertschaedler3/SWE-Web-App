@@ -1,15 +1,23 @@
 <ng-container *ngIf="auth.user$ | async as user">
     <div class="button-container">
-        <button *ngIf="auth.canEdit(user)" mat-raised-button (click)="createEvent(user)" color="primary"
-            class="create-button">
-            <mat-icon inline="true">add</mat-icon>
-            <span class="create-text">Create Event</span>
-        </button>
+        <div *ngIf="auth.canEdit(user)">
+            <div class="create-button-large">
+                <button mat-raised-button (click)="createEvent(user)" color="primary">
+                    <mat-icon inline="true">add</mat-icon>
+                    <span>Create Event</span>
+                </button>
+            </div>
+            <div class="create-button-small">
+                <button mat-fab (click)="createEvent(user)" color="primary">
+                    <mat-icon inline="true">add</mat-icon>
+                </button>
+            </div>
+        </div>
     </div>
     <mat-nav-list>
         <a *ngFor="let menuItem of menuItems" mat-list-item [routerLink]="[menuItem.path]">
             <mat-icon>{{menuItem.icon}}</mat-icon>
-            <span class="item-title">{{ menuItem.title }}</span>
+            <span class="item-title">{{menuItem.title}}</span>
         </a>
     </mat-nav-list>
 </ng-container>
