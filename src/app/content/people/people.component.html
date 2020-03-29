@@ -1,0 +1,13 @@
+<div class="main-content">
+    <div>
+
+        <mat-list>
+            <mat-list-item *ngFor="let person of people.people$ | async" class="profile">
+                <img mat-list-icon [src]="person.photoURL">
+                <div class="name" mat-line>{{person.displayName}}</div>
+                <div class="email" mat-line> {{person.email}} </div>
+                <!-- <mat-icon mat-list-icon>person</mat-icon> -->
+            </mat-list-item>
+        </mat-list>
+    </div>
+</div>

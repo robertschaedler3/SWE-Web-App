@@ -1,18 +1,15 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { AuthService } from 'src/app/services/auth.service';
 import { SearchService } from 'src/app/services/search.service';
 import { StevensEvent } from 'src/app/models/event.model';
 import { MatAutocompleteSelectedEvent } from '@angular/material';
 import { Router } from '@angular/router';
-import { fader } from 'src/app/animations/load-animation';
 
 @Component({
-  selector: 'app-toolbar',
-  templateUrl: './toolbar.component.html',
-  styleUrls: ['./toolbar.component.scss'],
-  animations: [fader]
+  selector: 'app-search',
+  templateUrl: './search.component.html',
+  styleUrls: ['./search.component.scss']
 })
-export class ToolbarComponent implements OnInit {
+export class SearchComponent implements OnInit {
 
   results: StevensEvent[];
   lastKeyPress: number = 0;
@@ -20,12 +17,11 @@ export class ToolbarComponent implements OnInit {
   @ViewChild('searchInput') searchInput: ElementRef<HTMLInputElement>;
 
   constructor(
-    public auth: AuthService,
     public searchSvc: SearchService,
     private router: Router
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
   search($event): void {

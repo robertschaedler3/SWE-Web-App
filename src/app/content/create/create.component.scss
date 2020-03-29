@@ -1,0 +1,29 @@
+form {
+    padding: 3rem;
+}
+
+mat-form-field {
+    font-size: 12px !important;
+    margin-left: 0.5rem;
+    width: 100%;
+}
+
+.title-field {
+    font-size: 16px !important;
+}
+
+mat-icon {
+    margin-bottom: 16.125px !important;
+    margin-right: 1rem;
+}
+
+.icon-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.input-row {
+    display: flex;
+    align-items: center;
+}

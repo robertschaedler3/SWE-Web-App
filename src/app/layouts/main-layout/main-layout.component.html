@@ -26,28 +26,9 @@
         min-width: 50%;
         min-height: 50%;
     }
-
-    /* #red-panel {
-    position: relative;
-    animation-name: slideRed;
-    animation-duration: 0.75s;
-    animation-timing-function: ease-out;
-    animation-delay: 0s;
-  }
-
-  @keyframes slideRed {
-    0% {
-      top: 500px;
-      transform: translateY(100px);
-    }
-
-    100% {
-      transform: translateY(0);
-    }
-  } */
 </style>
 
-<div @fader class="background">
+<!-- <div @fader class="background">
     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1920" height="1080"
         viewBox="0 0 1920 1080">
         <defs>
@@ -80,19 +61,30 @@
                 transform="translate(-473 -1364.67)" fill="#7f0112" />
         </g>
     </svg>
-</div>
+</div> -->
 
-<div class="layout-container">
-    <div class="content-wrapper">
-        <app-toolbar></app-toolbar>
+
+<mat-sidenav-container>
+    <mat-sidenav #drawer mode="over" position="end">
+        <app-create></app-create>
+    </mat-sidenav>
+    <div class="toolbar-container">
         <div class="container">
             <div class="row">
-                <div class="col-md-12 logo-container">
-                    <img class="logo-full" src="assets/images/logo-full.png" alt="">
+                <div class="col-md-8 offset-md-2">
+                    <mat-toolbar>{{getTitle()}}</mat-toolbar>
                 </div>
             </div>
-            <router-outlet></router-outlet>
         </div>
     </div>
-</div>
-<app-footer></app-footer>
+    <div class="container">
+        <div class="row">
+            <app-nav (create)="drawer.toggle()"></app-nav>
+            <div class="col-md-8 offset-md-2">
+                <div class="main-content">
+                    <router-outlet></router-outlet>
+                </div>
+            </div>
+        </div>
+    </div>
+</mat-sidenav-container>

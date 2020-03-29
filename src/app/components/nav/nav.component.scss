@@ -1,0 +1,58 @@
+.nav-content {
+  padding-top: 5rem;
+}
+
+.logo {
+  width: 105px;
+  position: fixed;
+}
+
+img {
+  height: 40px;
+  margin-top: 6px;
+  margin-left: 6px;
+}
+
+.item-title {
+  margin-left: 1rem;
+  font-weight: 900;
+  padding: 1rem;
+}
+
+.create-button-small {
+  visibility: hidden !important;
+}
+
+.create-button-large mat-icon {
+  margin-right: 0.5rem;
+  font-size: 18px;
+}
+
+@media only screen and (max-width: 992px) {
+  .item-title {
+    visibility: hidden;
+  }
+  .create-button-large {
+    visibility: hidden !important;
+    position: fixed;
+  }
+  .create-button-small {
+    visibility: visible !important;
+  }
+}
+
+.button-container {
+  height: 3rem;
+  // margin-top: 5rem;
+}
+
+.mat-raised-button {
+  height: 3rem;
+  border-radius: 1.5rem;
+  font-weight: 800;
+}
+
+a:hover {
+  color: #d3d3d3;
+  transition: ease 100ms;
+}

@@ -9,7 +9,7 @@ import { AuthGuard } from './guards/auth.guard';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'upcoming',
+    redirectTo: 'feed',
     pathMatch: 'full',
   },
   {
@@ -26,6 +26,10 @@ const routes: Routes = [
       loadChildren: () => import('./layouts/main-layout/main-layout.module').then(m => m.MainLayoutModule)
     }]
   },
+  {
+    path: '**',
+    redirectTo: 'feed'
+  }
 
 ];
 

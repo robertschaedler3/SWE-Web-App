@@ -44,11 +44,11 @@ export const fadeUp =
 export const cardListFader =
     trigger('cardListFader', [
         transition(':enter', [
-            query('mat-card', style({
-                transform: 'translateY(40px) rotate(2deg)',
+            query('div.event', style({
+                transform: 'translateY(40px)',
                 opacity: 0
             })),
-            query('mat-card',
+            query('div.event',
                 stagger('100ms', [
                     animate('300ms 600ms ease-out', style({
                         transform: 'translateY(0px)',

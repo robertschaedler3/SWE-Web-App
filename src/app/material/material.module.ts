@@ -21,7 +21,8 @@ import {
   MatNativeDateModule,
   MatGridListModule,
   MatChipsModule,
-  MatAutocompleteModule
+  MatAutocompleteModule,
+  MatSidenavModule
 } from '@angular/material';
 import { MaterialElevationDirective } from '../directives/material-elevation.directive';
 
@@ -49,7 +50,8 @@ import { MaterialElevationDirective } from '../directives/material-elevation.dir
     MatNativeDateModule,
     MatGridListModule,
     MatChipsModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatSidenavModule
   ],
   exports: [
     MatButtonModule,
@@ -72,6 +74,7 @@ import { MaterialElevationDirective } from '../directives/material-elevation.dir
     MatGridListModule,
     MatChipsModule,
     MatAutocompleteModule,
+    MatSidenavModule,
     MaterialElevationDirective
   ]
 })

@@ -1,16 +1,14 @@
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { Component, OnInit, Inject, ElementRef, ViewChild } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
-
-import { MatAutocompleteSelectedEvent, MatAutocomplete } from '@angular/material/autocomplete';
-import { MatChipInputEvent } from '@angular/material/chips';
-
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 
-import { StevensEvent } from '../models/event.model';
+import { MatAutocompleteSelectedEvent, MatAutocomplete } from '@angular/material/autocomplete';
+import { MatChipInputEvent } from '@angular/material/chips';
+
+import { StevensEvent } from '../../models/event.model';
 
 export interface TagChip {
   id: string;
@@ -44,11 +42,11 @@ export interface EventTime {
 }
 
 @Component({
-  selector: 'app-create-event-dialog',
-  templateUrl: './create-event-dialog.component.html',
-  styleUrls: ['./create-event-dialog.component.scss']
+  selector: 'app-create',
+  templateUrl: './create.component.html',
+  styleUrls: ['./create.component.scss']
 })
-export class CreateEventDialogComponent implements OnInit {
+export class CreateComponent implements OnInit {
 
   eventForm: FormGroup;
   times: EventTime[] = [];
@@ -66,14 +64,13 @@ export class CreateEventDialogComponent implements OnInit {
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
 
   constructor(
-    public dialogRef: MatDialogRef<CreateEventDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData,
     private fb: FormBuilder,
     private afs: AngularFirestore
   ) {
     this.filteredTags = this.tagCtrl.valueChanges.pipe(
       startWith(null),
-      map((tag: string | null) => tag ? this._filter(tag) : this.allTags.slice()));
+      map((tag: string | null) => tag ? this._filter(tag) : this.allTags.slice())
+    );
   }
 
   ngOnInit(): void {
@@ -93,38 +90,6 @@ export class CreateEventDialogComponent implements OnInit {
         this.allTags.push({ id: doc.id, name: doc.data().name });
       })
     });
-  }
-
-  public onNoClick(): void {
-    // TODO: confirm dialog close
-    this.dialogRef.close();
-  }
-
-  public create(): void {
-    const { title, description, day, start, end, building, room }: FormData = this.eventForm.value;
-
-    let event_start = new Date(day);
-    let event_end = new Date(day);
-    let s = this.times[start];
-    let e = this.times[end];
-    event_start.setHours(s.hour, s.min);
-    event_end.setHours(e.hour, e.min);
-
-    const result: DialogResult = {
-      event: {
-        title,
-        description,
-        start: event_start,
-        end: event_end,
-        building,
-        room,
-        author: this.data.author,
-        authorId: this.data.uid
-      },
-      tags: this.tags
-    }
-
-    this.dialogRef.close(result);
   }
 
   private pad(num: number, size: number): string {

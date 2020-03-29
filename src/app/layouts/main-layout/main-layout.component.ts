@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
+import { ROUTES } from 'src/app/components/nav/nav.component';
 import { fader } from 'src/app/animations/load-animation';
 
 @Component({
@@ -9,9 +11,26 @@ import { fader } from 'src/app/animations/load-animation';
 })
 export class MainLayoutComponent implements OnInit {
 
-  constructor() { }
+  listTitles: any;
 
-  ngOnInit() {
+  constructor(public location: Location) { }
+
+  ngOnInit(): void {
+    this.listTitles = ROUTES.filter(listTitle => listTitle);
+  }
+
+  getTitle() {
+    var titlee = this.location.prepareExternalUrl(this.location.path());
+    if (titlee.charAt(0) === '#') {
+      titlee = titlee.slice(1);
+    }
+
+    for (var item = 0; item < this.listTitles.length; item++) {
+      if (this.listTitles[item].path === titlee) {
+        return this.listTitles[item].title;
+      }
+    }
+    return 'Feed';
   }
 
 }

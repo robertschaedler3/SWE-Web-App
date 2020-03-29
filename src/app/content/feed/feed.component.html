@@ -1,0 +1,41 @@
+<div *ngIf="events.upcoming$ | async as events; else loadingEvents">
+    <!-- {{events | json}} -->
+    <div [@cardListFader]="events.length">
+        <div *ngFor="let event of events" class="event-container event-hover" (click)="displayDetails(event.id)">
+            <div class="author-thumbnail-container">
+                <img class="author-thumbnail"
+                    src="https://lh3.googleusercontent.com/a-/AOh14GilBuLzIDlPw0CTj7a11-nr1y9W9egdCNGWmKSt" alt="">
+            </div>
+            <div class="event-content">
+                <h6 class="author">{{event.author}}</h6>
+                <h4>{{event.title}}</h4>
+                <p class="description">
+                    {{ (event.description.length>6)? (event.description | slice:0:140)+'...':(event.description) }}</p>
+                <img *ngIf="event.thumbnail" class="event-thumbnail" [src]="event.thumbnail">
+                <div class="row details">
+                    <div class="col-md-6">
+                        <div>
+                            <mat-icon inline="true">schedule</mat-icon>
+                            <span class="align-to-icon">{{event.start.toDate() | date:'MM/dd'}}
+                                {{event.start.toDate() | date:'h:mm a'}} -
+                                {{event.end.toDate() | date:'h:mm a'}}</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div>
+                            <mat-icon inline="true">location_on</mat-icon>
+                            <span class="align-to-icon"> {{event.building}} {{event.room}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template #loadingEvents>
+    <div class="loading-spinner">
+        <p>Loading...</p>
+        <mat-progress-bar mode="query"></mat-progress-bar>
+    </div>
+</ng-template>
