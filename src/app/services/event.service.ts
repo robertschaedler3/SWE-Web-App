@@ -3,7 +3,6 @@ import { Observable, of } from 'rxjs';
 import * as _ from 'lodash';
 import { StevensEvent } from '../models/event.model';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
-import { DialogResult } from '../create-event-dialog/create-event-dialog.component';
 import { switchMap } from 'rxjs/operators';
 import { EventTag, Tag } from '../models/tag.model';
 import { firestore } from 'firebase';
@@ -19,7 +18,7 @@ export class EventService {
     private afs: AngularFirestore,
   ) { }
 
-  public createEvent(data: DialogResult) {
+  public createEvent(data) {
     console.log(data);
     let newEvent: StevensEvent = data.event;
     this.afs.collection<StevensEvent>('/event').add(newEvent).then(event => {
