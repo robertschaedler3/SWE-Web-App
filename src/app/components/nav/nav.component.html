@@ -2,13 +2,13 @@
     <div class="button-container">
         <div *ngIf="auth.canEdit(user)">
             <div class="create-button-large">
-                <button mat-raised-button (click)="createEvent(user)" color="primary">
+                <button mat-raised-button (click)="createEvent()" color="primary">
                     <mat-icon inline="true">add</mat-icon>
                     <span>Create Event</span>
                 </button>
             </div>
             <div class="create-button-small">
-                <button mat-fab (click)="createEvent(user)" color="primary">
+                <button mat-fab (click)="createEvent()" color="primary">
                     <mat-icon inline="true">add</mat-icon>
                 </button>
             </div>
