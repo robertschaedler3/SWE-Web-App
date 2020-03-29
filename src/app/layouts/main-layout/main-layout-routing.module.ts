@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { EventDetailsComponent } from 'src/app/event-details/event-details.component';
+import { FeedDetailsComponent } from 'src/app/content/feed-details/feed-details.component';
 
 import { FeedComponent } from 'src/app/content/feed/feed.component';
 import { PeopleComponent } from 'src/app/content/people/people.component';
@@ -18,7 +18,7 @@ const routes: Routes = [
     { path: 'groups', component: GroupsComponent },
     { path: 'settings', component: SettingsComponent },
     { path: 'details', redirectTo: 'feed' },
-    { path: 'details/:eventId', component: EventDetailsComponent },
+    { path: 'details/:eventId', component: FeedDetailsComponent },
 ];
 
 @NgModule({

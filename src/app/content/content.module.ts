@@ -11,12 +11,14 @@ import { GroupsComponent } from './groups/groups.component';
 import { SettingsComponent } from './settings/settings.component';
 import { SearchComponent } from './search/search.component';
 import { CreateComponent } from './create/create.component';
+import { FeedDetailsComponent } from './feed-details/feed-details.component';
 
 
 
 @NgModule({
   declarations: [
     FeedComponent,
+    FeedDetailsComponent,
     PeopleComponent,
     DiscoverComponent,
     SearchComponent,
@@ -32,6 +34,7 @@ import { CreateComponent } from './create/create.component';
   ],
   exports: [
     FeedComponent,
+    FeedDetailsComponent,
     PeopleComponent,
     DiscoverComponent,
     SearchComponent,

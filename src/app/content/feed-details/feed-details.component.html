@@ -1,7 +1,7 @@
-<div *ngIf="events.upcoming$ | async as events; else loadingEvents">
-    <!-- {{events | json}} -->
-    <div [@cardListFader]="events.length">
-        <div *ngFor="let event of events" class="event-container event-hover" (click)="displayDetails(event.id)">
+<div @fadeUp class="row">
+    <div class="col-md-12">
+        <div *ngIf="event$ | async as event" class="event-container">
+
             <div class="author-thumbnail-container">
                 <img class="author-thumbnail"
                     src="https://lh3.googleusercontent.com/a-/AOh14GilBuLzIDlPw0CTj7a11-nr1y9W9egdCNGWmKSt" alt="">
@@ -9,8 +9,14 @@
             <div class="event-content">
                 <h6 class="author">{{event.author}}</h6>
                 <h4>{{event.title}}</h4>
-                <p class="description">
-                    {{ (event.description.length>6)? (event.description | slice:0:140)+'...':(event.description) }}</p>
+                <p class="description">{{ event.description}}</p>
+                <div class="tag-list">
+                    <div *ngIf="tags$ | async as tags">
+                        <mat-chip-list [@chipListFader]="tags.length" aria-label="Tag list">
+                            <mat-chip *ngFor="let tag of tags"> {{tag.name}} </mat-chip>
+                        </mat-chip-list>
+                    </div>
+                </div>
                 <img *ngIf="event.thumbnail" class="event-thumbnail" [src]="event.thumbnail">
                 <div class="row details">
                     <div class="col-md-6">
@@ -33,9 +39,3 @@
         </div>
     </div>
 </div>
-<ng-template #loadingEvents>
-    <div class="loading-spinner">
-        <p>Loading...</p>
-        <mat-progress-bar mode="query"></mat-progress-bar>
-    </div>
-</ng-template>
