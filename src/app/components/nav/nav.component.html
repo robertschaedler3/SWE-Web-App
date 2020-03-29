@@ -1,4 +1,7 @@
-<ng-container *ngIf="auth.user$ | async as user">
+<span class="logo">
+    <a [routerLink]="['/feed']"><img src="assets/images/logo.png"></a>
+</span>
+<div *ngIf="auth.user$ | async as user" class="nav-content">
     <div class="button-container">
         <div *ngIf="auth.canEdit(user)">
             <div class="create-button-large">
@@ -20,4 +23,4 @@
             <span class="item-title">{{menuItem.title}}</span>
         </a>
     </mat-nav-list>
-</ng-container>
+</div>

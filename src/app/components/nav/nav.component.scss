@@ -1,3 +1,18 @@
+.nav-content {
+  padding-top: 5rem;
+}
+
+.logo {
+  width: 105px;
+  position: fixed;
+}
+
+img {
+  height: 40px;
+  margin-top: 6px;
+  margin-left: 6px;
+}
+
 .item-title {
   margin-left: 1rem;
   font-weight: 900;
@@ -28,7 +43,7 @@
 
 .button-container {
   height: 3rem;
-  margin-top: 64px;
+  // margin-top: 5rem;
 }
 
 .mat-raised-button {
