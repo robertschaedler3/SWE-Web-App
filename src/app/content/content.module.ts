@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { MaterialModule } from '../utils/material.module';
+import { MaterialModule } from '../material/material.module';
 
 import { FeedComponent } from './feed/feed.component';
 import { PeopleComponent } from './people/people.component';

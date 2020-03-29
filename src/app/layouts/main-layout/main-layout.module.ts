@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ComponentModule } from 'src/app/components/components.module';
 import { ContentModule } from 'src/app/content/content.module';
-import { MaterialModule } from '../../utils/material.module';
+import { MaterialModule } from '../../material/material.module';
 
 import { MainLayoutRoutingModule } from './main-layout-routing.module';
 

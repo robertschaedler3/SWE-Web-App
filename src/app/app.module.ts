@@ -15,7 +15,7 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MaterialModule } from './utils/material.module';
+import { MaterialModule } from './material/material.module';
 
 import { ComponentModule } from './components/components.module';
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
