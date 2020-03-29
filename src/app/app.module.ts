@@ -20,6 +20,7 @@ import { MaterialModule } from './utils/material.module';
 import { ComponentModule } from './components/components.module';
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
 import { LoginComponent } from './login/login.component';
+import { ContentModule } from './content/content.module';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { LoginComponent } from './login/login.component';
     AngularFireStorageModule, // storage
     BrowserAnimationsModule,
     ComponentModule,
+    ContentModule,
     HttpClientModule,
     MaterialModule,
     FormsModule,
