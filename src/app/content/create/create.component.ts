@@ -9,6 +9,7 @@ import { MatAutocompleteSelectedEvent, MatAutocomplete } from '@angular/material
 import { MatChipInputEvent } from '@angular/material/chips';
 
 import { StevensEvent } from '../../models/event.model';
+import { EventService } from 'src/app/services/event.service';
 
 export interface TagChip {
   id: string;
@@ -65,7 +66,8 @@ export class CreateComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private afs: AngularFirestore
+    private afs: AngularFirestore,
+    private events: EventService
   ) {
     this.filteredTags = this.tagCtrl.valueChanges.pipe(
       startWith(null),
@@ -178,6 +180,11 @@ export class CreateComponent implements OnInit {
   private _filter(value: string): TagChip[] {
     const filterValue = value.toLowerCase();
     return this.allTags.filter(tag => tag.name.toLowerCase().indexOf(filterValue) === 0);
+  }
+
+
+  public create() {
+    this.events.createEvent(this.eventForm.value)
   }
 
 }
