@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { ROUTES } from 'src/app/components/nav/nav.component';
 import { fader } from 'src/app/animations/load-animation';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-main-layout',
@@ -13,7 +14,10 @@ export class MainLayoutComponent implements OnInit {
 
   listTitles: any;
 
-  constructor(public location: Location) { }
+  constructor(
+    public location: Location,
+    public auth: AuthService
+  ) { }
 
   ngOnInit(): void {
     this.listTitles = ROUTES.filter(listTitle => listTitle);
