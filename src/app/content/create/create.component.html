@@ -5,7 +5,7 @@
     </mat-form-field>
     <div class="input-row">
         <div class="icon-container">
-            <mat-icon>access_time</mat-icon>
+            <mat-icon class="input-icon">access_time</mat-icon>
         </div>
         <mat-form-field appearance="fill">
             <mat-label class="detail-icon">Choose a date</mat-label>
@@ -28,7 +28,7 @@
     </div>
     <div class="input-row">
         <div class="icon-container">
-            <mat-icon>location_on</mat-icon>
+            <mat-icon class="input-icon">location_on</mat-icon>
         </div>
         <mat-form-field appearance="fill">
             <mat-label>Building</mat-label>
@@ -41,7 +41,7 @@
     </div>
     <div class="input-row">
         <div class="icon-container">
-            <mat-icon>label</mat-icon>
+            <mat-icon class="input-icon">label</mat-icon>
         </div>
         <mat-form-field appearance="fill">
             <mat-chip-list #chipList aria-label="Event tags">
@@ -63,11 +63,12 @@
     </div>
     <div class="input-row">
         <div class="icon-container">
-            <mat-icon>notes</mat-icon>
+            <mat-icon class="input-icon">notes</mat-icon>
         </div>
         <mat-form-field class="no-margin" appearance="fill">
             <mat-label>Description</mat-label>
             <textarea matInput placeholder="Describe the event..." formControlName="description"></textarea>
         </mat-form-field>
     </div>
+    <button mat-raised-button (click)="create()">Create</button>
 </form>
