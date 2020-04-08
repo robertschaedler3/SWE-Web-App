@@ -1,10 +1,8 @@
 <div *ngIf="events.upcoming$ | async as events; else loadingEvents">
-    <!-- {{events | json}} -->
     <div [@cardListFader]="events.length">
-        <div *ngFor="let event of events" class="event-container event-hover" (click)="displayDetails(event.id)">
+        <div *ngFor="let event of events" class="event event-container event-hover" (click)="displayDetails(event.id)">
             <div class="author-thumbnail-container">
-                <img class="author-thumbnail"
-                    src="https://lh3.googleusercontent.com/a-/AOh14GilBuLzIDlPw0CTj7a11-nr1y9W9egdCNGWmKSt" alt="">
+                <img class="author-thumbnail" [src]="event.authorThumbnail">
             </div>
             <div class="event-content">
                 <h6 class="author">{{event.author}}</h6>
