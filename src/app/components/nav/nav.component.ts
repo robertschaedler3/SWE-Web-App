@@ -12,8 +12,8 @@ export const ROUTES: RouteInfo[] = [
   { path: '/feed', title: 'Feed', icon: 'dashboard' },
   { path: '/discover', title: 'Discover', icon: 'search' },
   { path: '/people', title: 'People', icon: 'people' },
-  { path: '/groups', title: 'Groups', icon: 'group_work' },
-  { path: '/settings', title: 'Settings', icon: 'settings' },
+  // { path: '/groups', title: 'Groups', icon: 'group_work' },
+  // { path: '/settings', title: 'Settings', icon: 'settings' },
 ];
 
 @Component({
