@@ -3,6 +3,7 @@ export interface StevensEvent {
     description: string;
     author: string;
     authorId: string;
+    authorThumbnail?: string;
     start: Date;
     end: Date;
     building: string;
