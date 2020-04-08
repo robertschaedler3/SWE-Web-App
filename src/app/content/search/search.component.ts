@@ -3,6 +3,14 @@ import { SearchService } from 'src/app/services/search.service';
 import { StevensEvent } from 'src/app/models/event.model';
 import { MatAutocompleteSelectedEvent } from '@angular/material';
 import { Router } from '@angular/router';
+import { User } from 'src/app/models/user.model';
+import { Tag } from 'src/app/models/tag.model';
+
+interface SearchResult {
+  events: StevensEvent[];
+  people: User[];
+  tags: Tag[];
+}
 
 @Component({
   selector: 'app-search',
@@ -11,7 +19,11 @@ import { Router } from '@angular/router';
 })
 export class SearchComponent implements OnInit {
 
-  results: StevensEvent[];
+  results: SearchResult = {
+    events: [],
+    people: [],
+    tags: []
+  };
   lastKeyPress: number = 0;
 
   @ViewChild('searchInput') searchInput: ElementRef<HTMLInputElement>;
@@ -26,16 +38,26 @@ export class SearchComponent implements OnInit {
 
   search($event): void {
     if ($event.timeStamp - this.lastKeyPress > 300) {
-      let query = $event.target.value;
-      this.searchSvc.getEvents(query, query + '\uf8ff').subscribe(results => {
-        this.results = results;
-      });
+      let query: string = $event.target.value;
+      this.searchSvc.getEvents(query.toUpperCase(), query.toLowerCase() + '\uf8ff').subscribe(results => this.results.events = results);
+      this.searchSvc.getPeople(query.toUpperCase(), query.toLowerCase() + '\uf8ff').subscribe(results => this.results.people = results);
+      this.searchSvc.getTags(query.toUpperCase(), query.toLowerCase() + '\uf8ff').subscribe(results => this.results.tags = results);
     }
     this.lastKeyPress = $event.timeStamp;
   }
 
-  navigateTo(value: MatAutocompleteSelectedEvent) {
-    this.router.navigate(['/details', value.option.value])
+  navigateToEvent(value) {
+    this.router.navigate(['/details', value])
+    this.searchInput.nativeElement.value = '';
+  }
+
+  navigateToProfile(value) {
+    this.router.navigate(['/profile', value])
+    this.searchInput.nativeElement.value = '';
+  }
+
+  navigateToTag(value) {
+    this.router.navigate(['/tag', value])
     this.searchInput.nativeElement.value = '';
   }
 
