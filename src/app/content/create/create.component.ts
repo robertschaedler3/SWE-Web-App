@@ -1,4 +1,5 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Inject } from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { AngularFirestore } from '@angular/fire/firestore';
@@ -9,7 +10,7 @@ import { MatAutocompleteSelectedEvent, MatAutocomplete } from '@angular/material
 import { MatChipInputEvent } from '@angular/material/chips';
 
 import { StevensEvent } from '../../models/event.model';
-import { EventService } from 'src/app/services/event.service';
+import { EventService } from '../../services/event.service';
 
 export interface TagChip {
   id: string;
@@ -44,10 +45,32 @@ export interface EventTime {
 
 @Component({
   selector: 'app-create',
-  templateUrl: './create.component.html',
-  styleUrls: ['./create.component.scss']
+  templateUrl: 'create.component.html',
+  styleUrls: ['create.component.scss'],
 })
-export class CreateComponent implements OnInit {
+export class CreateComponent {
+
+  constructor(public dialog: MatDialog) { }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(CreateComponentDialog, {
+      width: '800px',
+      data: {}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+
+}
+
+@Component({
+  selector: 'app-create-dialog',
+  templateUrl: './create-dialog.component.html',
+  styleUrls: ['create.component.scss'],
+})
+export class CreateComponentDialog implements OnInit {
 
   eventForm: FormGroup;
   times: EventTime[] = [];
@@ -67,7 +90,9 @@ export class CreateComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private afs: AngularFirestore,
-    private events: EventService
+    private events: EventService,
+    public dialogRef: MatDialogRef<CreateComponentDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData
   ) {
     this.filteredTags = this.tagCtrl.valueChanges.pipe(
       startWith(null),
