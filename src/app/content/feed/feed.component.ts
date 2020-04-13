@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { EventService } from 'src/app/services/event.service';
+import { EventService } from '../../services/event.service';
 import { Router } from '@angular/router';
-import { cardListFader } from 'src/app/animations/load-animation';
+import { cardListFader } from '../../animations/load-animation';
 
 @Component({
   selector: 'app-feed',
