@@ -9,8 +9,6 @@ import { PeopleComponent } from './people/people.component';
 import { DiscoverComponent } from './discover/discover.component';
 import { GroupsComponent } from './groups/groups.component';
 import { SettingsComponent } from './settings/settings.component';
-import { SearchComponent } from './search/search.component';
-import { CreateComponent } from './create/create.component';
 import { FeedDetailsComponent } from './feed-details/feed-details.component';
 
 
@@ -21,10 +19,8 @@ import { FeedDetailsComponent } from './feed-details/feed-details.component';
     FeedDetailsComponent,
     PeopleComponent,
     DiscoverComponent,
-    SearchComponent,
     GroupsComponent,
     SettingsComponent,
-    CreateComponent
   ],
   imports: [
     CommonModule,
@@ -37,10 +33,8 @@ import { FeedDetailsComponent } from './feed-details/feed-details.component';
     FeedDetailsComponent,
     PeopleComponent,
     DiscoverComponent,
-    SearchComponent,
     GroupsComponent,
     SettingsComponent,
-    CreateComponent
   ]
 })
 export class ContentModule { }
