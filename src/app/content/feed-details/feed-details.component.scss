@@ -1,15 +1,3 @@
-mat-card {
-  height: 400px;
-}
-
-.event-container {
-  padding: 1.5rem;
-}
-
-.header {
-  margin-bottom: 1rem;
-}
-
 p {
   margin-top: 1rem;
 }
@@ -22,7 +10,20 @@ p {
 .event-container {
   display: flex;
   padding: 1rem;
-  background-color: #242424;
+  // background-color: #242424;
+  padding: 1.5rem;
+}
+
+.event-content {
+  margin-left: 1rem;
+  width: 100%;
+}
+
+.event-thumbnail {
+  object-fit: cover;
+  width: 100%;
+  height: 250px;
+  border-radius: 1rem;
 }
 
 .author {
@@ -42,19 +43,11 @@ p {
   border-radius: 23px;
 }
 
-.event-content {
-  margin-left: 1rem;
-  width: 100%;
-}
-
 .description {
   font-size: 14px;
   font-weight: 400;
 }
 
-.event-thumbnail {
-  object-fit: cover;
-  width: 100%;
-  height: 250px;
-  border-radius: 1rem;
+.details {
+  margin-top: 1rem;
 }
