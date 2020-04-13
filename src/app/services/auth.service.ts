@@ -33,7 +33,7 @@ export class AuthService {
 
   async googleSignin() {
     const provider = new auth.GoogleAuthProvider();
-    const credential = await this.afAuth.auth.signInWithPopup(provider);
+    const credential = await this.afAuth.signInWithPopup(provider);
     if (credential.user.email.endsWith('@stevens.edu')) {
       return this.updateUserData(credential.user);
     }
@@ -42,7 +42,7 @@ export class AuthService {
 
   async signOut() {
     this.router.navigate(['/login']);
-    return this.afAuth.auth.signOut();
+    return this.afAuth.signOut();
   }
 
   private updateUserData({ uid, displayName, email, photoURL }) {
