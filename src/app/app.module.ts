@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
+import { environment } from '../environments/environment';
 
 import { AuthGuard } from './guards/auth.guard';
 
@@ -14,19 +14,20 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './material/material.module';
 
-import { ComponentModule } from './components/components.module';
+import { ComponentsModule } from './components/components.module';
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
 import { LoginComponent } from './login/login.component';
 import { ContentModule } from './content/content.module';
+import { DownloadComponent } from './download/download.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainLayoutComponent,
-    LoginComponent
+    LoginComponent,
+    DownloadComponent
   ],
   imports: [
     BrowserModule,
@@ -36,12 +37,10 @@ import { ContentModule } from './content/content.module';
     AngularFireAuthModule, // auth
     AngularFireStorageModule, // storage
     BrowserAnimationsModule,
-    ComponentModule,
+    ComponentsModule,
     ContentModule,
     HttpClientModule,
     MaterialModule,
-    FormsModule,
-    ReactiveFormsModule
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]
