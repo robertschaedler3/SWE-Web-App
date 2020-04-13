@@ -1,13 +1,50 @@
 <div class="main-content">
-    <div>
-
-        <mat-list>
-            <mat-list-item *ngFor="let person of people.people$ | async" class="profile">
-                <img mat-list-icon [src]="person.photoURL">
-                <div class="name" mat-line>{{person.displayName}}</div>
-                <div class="email" mat-line> {{person.email}} </div>
-                <!-- <mat-icon mat-list-icon>person</mat-icon> -->
-            </mat-list-item>
-        </mat-list>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8 offset-2">
+                <div class="card card-plain">
+                    <!-- <div class="card-header card-header-danger">
+                        <h4 class="card-title mt-0"> Table on Plain Background</h4>
+                        <p class="card-category"> Here is a subtitle for this table</p>
+                    </div> -->
+                    <div class="card-body">
+                        <div *ngIf="people.people$ | async as people" class="table-responsive">
+                            <table class="table table-hover">
+                                <thead class="">
+                                    <th></th>
+                                    <th>
+                                        Name
+                                    </th>
+                                    <th>
+                                        Email
+                                    </th>
+                                    <th>
+                                        Office
+                                    </th>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let person of people">
+                                        <td>
+                                            <a href="javascript:void(0)">
+                                                <img class="thumbnail-avatar" [src]="person.photoURL" />
+                                            </a>
+                                        </td>
+                                        <td>
+                                            {{person.displayName}}
+                                        </td>
+                                        <td>
+                                            <a href="mailto:{{person.email}}" target="_blank">{{person.email}}</a>
+                                        </td>
+                                        <td>
+                                            office
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
