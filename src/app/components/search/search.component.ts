@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { SearchService } from 'src/app/services/search.service';
-import { StevensEvent } from 'src/app/models/event.model';
-import { MatAutocompleteSelectedEvent } from '@angular/material';
+import { SearchService } from '../../services/search.service';
+import { StevensEvent } from '../../models/event.model';
+// import { MatAutocompleteSelectedEvent } from '@angular/material';
 import { Router } from '@angular/router';
-import { User } from 'src/app/models/user.model';
-import { Tag } from 'src/app/models/tag.model';
+import { User } from '../../models/user.model';
+import { Tag } from '../../models/tag.model';
 
 interface SearchResult {
   events: StevensEvent[];
