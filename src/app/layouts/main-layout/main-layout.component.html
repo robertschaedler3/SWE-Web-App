@@ -28,17 +28,17 @@
     }
 </style>
 
-<!-- <div @fader class="background">
+<div @backgroundEnter class="background">
     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1920" height="1080"
         viewBox="0 0 1920 1080">
         <defs>
-            <filter id="charcoal-filter" x="-120" y="-117" width="2160" height="855.798" filterUnits="userSpaceOnUse">
+            <!-- <filter id="charcoal-filter" x="-120" y="-117" width="2160" height="855.798" filterUnits="userSpaceOnUse">
                 <feOffset dy="3" input="SourceAlpha" />
                 <feGaussianBlur stdDeviation="40" result="blur" />
                 <feFlood />
                 <feComposite operator="in" in2="blur" />
                 <feComposite in="SourceGraphic" />
-            </filter>
+            </filter> -->
             <filter id="blood-filter" x="-120" y="327.333" width="2160.001" height="875.668"
                 filterUnits="userSpaceOnUse">
                 <feOffset dy="3" input="SourceAlpha" />
@@ -51,41 +51,29 @@
                 <rect width="1920" height="1080" />
             </clipPath>
         </defs>
-        <path id="grey" d="M0,0H1920.349V1080H0Z" transform="translate(0 0)" fill="#999" />
+        <!-- <path id="grey" d="M0,0H1920.349V1080H0Z" transform="translate(0 0)" fill="#999" />
         <g id="charcoal-panel" transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#charcoal-filter)">
             <path id="charcoal" data-name="charcoal" d="M226,2706.8V2091H2146v414L226,2706.8Z"
                 transform="translate(-226 -2091)" fill="#333" />
-        </g>
+        </g> -->
         <g id="red-panel" transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#blood-filter)">
             <path id="blood" data-name="blood" d="M2393,2444.667H473V1809l1920,338.548v297.119Z"
-                transform="translate(-473 -1364.67)" fill="#7f0112" />
+                transform="translate(-473 -1264.67)" fill="#7f0112" />
         </g>
     </svg>
-</div> -->
+</div>
 
 
-<mat-sidenav-container>
-    <mat-sidenav #drawer mode="over" position="end">
-        <app-create></app-create>
-    </mat-sidenav>
-    <div class="toolbar-container">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 offset-md-2">
-                    <mat-toolbar>{{getTitle()}} <span class="spacer"></span></mat-toolbar>
-                </div>
-            </div>
+<div class="wrapper">
+    <div class="sidebar" data-color="danger" data-background-color="white" data-image="">
+        <app-sidebar></app-sidebar>
+        <div class="sidebar-background" style="background-image: url()"></div>
+    </div>
+    <div class="main-panel">
+        <app-navbar></app-navbar>
+        <router-outlet></router-outlet>
+        <div *ngIf="isMaps('maps')">
+            <app-footer></app-footer>
         </div>
     </div>
-    <div class="container">
-        <div class="row">
-            <app-nav (create)="drawer.toggle()"></app-nav>
-            <div class="col-md-8 offset-md-2">
-                <div class="main-content">
-                    <router-outlet></router-outlet>
-                </div>
-            </div>
-        </div>
-    </div>
-    <button mat-raised-button (click)="auth.signOut()">Sign Out</button>
-</mat-sidenav-container>
+</div>
