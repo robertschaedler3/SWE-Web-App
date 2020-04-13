@@ -1,0 +1,33 @@
+.download-container {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.download-container .row {
+    max-width: 800px;
+    width: 100%;
+}
+
+.col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.mobile-preview {
+    height: 350px;
+    margin-bottom: 2rem;
+}
+
+.download-button-container {
+    display: flex;
+    img {
+        height: 40px;
+    }
+    img:first-child {
+        margin-right: 1rem;
+    }
+}
