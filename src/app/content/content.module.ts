@@ -10,6 +10,7 @@ import { DiscoverComponent } from './discover/discover.component';
 import { GroupsComponent } from './groups/groups.component';
 import { SettingsComponent } from './settings/settings.component';
 import { FeedDetailsComponent } from './feed-details/feed-details.component';
+import { UserEventsComponent } from './user-events/user-events.component';
 
 
 
@@ -21,6 +22,7 @@ import { FeedDetailsComponent } from './feed-details/feed-details.component';
     DiscoverComponent,
     GroupsComponent,
     SettingsComponent,
+    UserEventsComponent,
   ],
   imports: [
     CommonModule,
