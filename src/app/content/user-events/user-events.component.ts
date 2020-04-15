@@ -8,7 +8,7 @@ import { map } from 'rxjs/operators';
 @Component({
   selector: 'app-user-events',
   templateUrl: './user-events.component.html',
-  styleUrls: ['./user-events.component.css']
+  styleUrls: ['./user-events.component.scss']
 })
 export class UserEventsComponent implements OnInit {
 
