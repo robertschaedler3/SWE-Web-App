@@ -13,7 +13,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDividerModule } from '@angular/material/divider';
-
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatListModule } from '@angular/material/list';
 
 import { MaterialElevationDirective } from '../directives/material-elevation.directive';
 
@@ -35,6 +36,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatNativeDateModule,
     MatChipsModule,
     MatAutocompleteModule,
+    MatExpansionModule,
+    MatListModule,
     FormsModule,
     ReactiveFormsModule
   ],
@@ -52,6 +55,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatChipsModule,
     MatAutocompleteModule,
     MaterialElevationDirective,
+    MatExpansionModule,
+    MatListModule,
     FormsModule,
     ReactiveFormsModule
   ]
