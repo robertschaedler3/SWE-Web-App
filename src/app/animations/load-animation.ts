@@ -79,4 +79,22 @@ export const chipListFader =
                 ])
             )
         ])
-    ]); 
+    ]);
+
+export const listFader =
+    trigger('listFader', [
+        transition(':enter', [
+            query('mat-list-item', style({
+                transform: 'translateY(20px)',
+                opacity: 0
+            })),
+            query('mat-list-item',
+                stagger('150ms', [
+                    animate('300ms 300ms ease-out', style({
+                        transform: 'translateY(0px)',
+                        opacity: 1
+                    }))
+                ])
+            )
+        ])
+    ]);
