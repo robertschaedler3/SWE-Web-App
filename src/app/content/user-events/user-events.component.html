@@ -1,1 +1,31 @@
-<p>user-events works!</p>
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div [ngClass]="{'col-md-4': showOutlet, 'col-md-12': !showOutlet}">
+                <div class="card card-plain" *ngIf="events$ | async as events">
+                    <!-- <div class="card-header card-header-danger">
+                        <h4 class="card-title mt-0"> Table on Plain Background</h4>
+                        <p class="card-category"> Here is a subtitle for this table</p>
+                    </div> -->
+                    <div class="card-body">
+                        <mat-list [@listFader]="events.length">
+                            <mat-list-item *ngFor="let event of events" class="table-responsive">
+                                <div mat-line>{{event.title}}</div>
+                                <div mat-line>
+                                    {{ (event.description.length > 6) ? (event.description | slice:0:20) + '...' : (event.description) }}
+                                </div>
+                                <button mat-icon-button [routerLink]="[event.id]">
+                                    <mat-icon>edit</mat-icon>
+                                </button>
+                            </mat-list-item>
+                        </mat-list>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8" [hidden]="!showOutlet">
+                <router-outlet (activate)="onActivate($event)" (deactivate)="onDeactivate($event)">
+                </router-outlet>
+            </div>
+        </div>
+    </div>
+</div>
