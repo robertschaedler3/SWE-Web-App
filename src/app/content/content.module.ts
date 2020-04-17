@@ -10,8 +10,8 @@ import { DiscoverComponent } from './discover/discover.component';
 import { GroupsComponent } from './groups/groups.component';
 import { SettingsComponent } from './settings/settings.component';
 import { FeedDetailsComponent } from './feed-details/feed-details.component';
-import { UserEventsComponent } from './user-events/user-events.component';
-import { UserEventsEditComponent } from './user-events-edit/user-events-edit.component';
+// import { UserEventsComponent } from './user-events/user-events.component';
+// import { UserEventsEditComponent } from './user-events-edit/user-events-edit.component';
 
 
 
@@ -23,8 +23,8 @@ import { UserEventsEditComponent } from './user-events-edit/user-events-edit.com
     DiscoverComponent,
     GroupsComponent,
     SettingsComponent,
-    UserEventsComponent,
-    UserEventsEditComponent,
+    // UserEventsComponent,
+    // UserEventsEditComponent,
   ],
   imports: [
     CommonModule,
@@ -39,6 +39,8 @@ import { UserEventsEditComponent } from './user-events-edit/user-events-edit.com
     DiscoverComponent,
     GroupsComponent,
     SettingsComponent,
+    // UserEventsComponent,
+    // UserEventsEditComponent,
   ]
 })
 export class ContentModule { }
