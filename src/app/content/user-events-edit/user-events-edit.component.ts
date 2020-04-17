@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-user-events-edit',
@@ -7,7 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserEventsEditComponent implements OnInit {
 
-  constructor() { }
+  eventId = '';
+
+  constructor(private route: ActivatedRoute) {
+    this.route.params.subscribe(params => {
+      this.eventId = params.id;
+    });
+  }
 
   ngOnInit(): void {
   }
