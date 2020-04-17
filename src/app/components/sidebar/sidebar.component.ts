@@ -12,8 +12,9 @@ export const ROUTES: RouteInfo[] = [
   { path: '/feed', title: 'Feed', icon: 'dashboard', class: '' },
   { path: '/discover', title: 'Discover', icon: 'search', class: '' },
   { path: '/people', title: 'People', icon: 'people', class: '' },
+  { path: '/my-events', title: 'My Events', icon: 'settings', class: 'active-pro' },
   // { path: '/groups', title: 'Groups', icon: 'group_work', class: '' },
-  { path: '/settings', title: 'Settings', icon: 'settings', class: 'active-pro' },
+  // { path: '/settings', title: 'Settings', icon: 'settings', class: 'active-pro' },
 ];
 
 @Component({
