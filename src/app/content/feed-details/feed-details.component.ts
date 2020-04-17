@@ -25,7 +25,7 @@ export class FeedDetailsComponent implements OnInit {
     private eventSvc: EventService
   ) {
     this.route.params.subscribe(params => {
-      this.eventId = params.eventId;
+      this.eventId = params.id;
       this.event$ = this.afs.collection('/event').doc<StevensEvent>(this.eventId).valueChanges();
       this.tags$ = this.eventSvc.getTags(this.eventId);
     });
