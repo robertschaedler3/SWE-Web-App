@@ -10,6 +10,7 @@ import { BackComponent } from './back/back.component';
 import { SearchComponent } from './search/search.component';
 
 import { MaterialModule } from '../material/material.module';
+import { FileUploadComponent } from './file-upload/file-upload.component';
 
 @NgModule({
   imports: [
@@ -25,6 +26,7 @@ import { MaterialModule } from '../material/material.module';
     SidebarComponent,
     CreateComponent,
     CreateComponentDialog,
+    FileUploadComponent,
   ],
   exports: [
     BackComponent,
