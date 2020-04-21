@@ -1,1 +1,10 @@
-<p>file-upload works!</p>
+<!-- <div class="dropzone" dropZone (hovered)="toggleHover($event)" (dropped)="onDrop($event)" [class.hovering]="isHovering">
+            <h3>AngularFire Drop Zone</h3>
+            <p>Drag and Drop a File</p> -->
+<input #imgInput hidden="true" type="file" (change)="onDrop($event.target.files)">
+<button mat-raised-button (click)="imgInput.click()">Choose an Image</button>
+<div *ngIf="file">{{file.name}}</div>
+<!-- </div> -->
+
+
+<!-- <div *ngIf="downloadURL as url">{{url}}</div> -->
