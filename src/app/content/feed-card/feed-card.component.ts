@@ -1,15 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Observable } from 'rxjs';
+import { StevensEvent } from '../../models/event.model';
+import { Tag } from '../../models/tag.model';
+import { fadeUp, chipListFader } from '../../animations/load-animation';
+
 
 @Component({
   selector: 'app-feed-card',
   templateUrl: './feed-card.component.html',
-  styleUrls: ['./feed-card.component.scss']
+  styleUrls: ['./feed-card.component.scss'],
+  animations: [fadeUp, chipListFader]
 })
-export class FeedCardComponent implements OnInit {
+export class FeedCardComponent {
 
-  constructor() { }
+  @Input() event: Observable<StevensEvent>;
+  @Input() tags: Observable<Tag[]>;
 
-  ngOnInit(): void {
+  constructor() {
   }
 
 }

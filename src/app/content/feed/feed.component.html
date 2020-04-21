@@ -4,36 +4,8 @@
             <div class="col-md-6 offset-3">
                 <div *ngIf="events.upcoming$ | async as events; else loadingEvents">
                     <div [@cardListFader]="events.length">
-                        <div *ngFor="let event of events" class="card" (click)="displayDetails(event.id)">
-                            <div class="card-body event event-container">
-                                <div class="author-thumbnail-container">
-                                    <img class="author-thumbnail" [src]="event.authorThumbnail">
-                                </div>
-                                <div class="event-content">
-                                    <h6 class="author">{{event.author}}</h6>
-                                    <h4>{{event.title}}</h4>
-                                    <p class="description">{{ event.description}}</p>
-                                    <img *ngIf="event.thumbnail" class="event-thumbnail" [src]="event.thumbnail">
-                                    <div class="row details">
-                                        <div class="col-md-6">
-                                            <div>
-                                                <mat-icon inline="true">schedule</mat-icon>
-                                                <span class="align-to-icon">{{event.start.toDate() | date:'MM/dd'}}
-                                                    {{event.start.toDate() | date:'h:mm a'}} -
-                                                    {{event.end.toDate() | date:'h:mm a'}}</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div>
-                                                <mat-icon inline="true">location_on</mat-icon>
-                                                <span class="align-to-icon"> {{event.building}} {{event.room}}
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <app-feed-card *ngFor="let event of events" [event]="event" (click)="displayDetails(event.id)">
+                        </app-feed-card>
                     </div>
                 </div>
                 <ng-template #loadingEvents>
