@@ -10,6 +10,7 @@ import { DiscoverComponent } from './discover/discover.component';
 import { GroupsComponent } from './groups/groups.component';
 import { SettingsComponent } from './settings/settings.component';
 import { FeedDetailsComponent } from './feed-details/feed-details.component';
+import { FeedCardComponent } from './feed-card/feed-card.component';
 // import { UserEventsComponent } from './user-events/user-events.component';
 // import { UserEventsEditComponent } from './user-events-edit/user-events-edit.component';
 
@@ -23,6 +24,7 @@ import { FeedDetailsComponent } from './feed-details/feed-details.component';
     DiscoverComponent,
     GroupsComponent,
     SettingsComponent,
+    FeedCardComponent,
     // UserEventsComponent,
     // UserEventsEditComponent,
   ],
@@ -39,6 +41,7 @@ import { FeedDetailsComponent } from './feed-details/feed-details.component';
     DiscoverComponent,
     GroupsComponent,
     SettingsComponent,
+    FeedCardComponent
     // UserEventsComponent,
     // UserEventsEditComponent,
   ]
