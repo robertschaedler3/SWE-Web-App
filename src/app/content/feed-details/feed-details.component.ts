@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { StevensEvent } from '../../models/event.model';
-import { Tag } from '../../models/tag.model';
+import { EventTag } from '../../models/tag.model';
 import { EventService } from '../../services/event.service';
 
 @Component({
@@ -14,7 +14,7 @@ export class FeedDetailsComponent {
 
   eventId: string;
   event$: Observable<StevensEvent>;
-  tags$: Observable<Tag[]>
+  tags$: Observable<EventTag[]>
 
   constructor(
     private route: ActivatedRoute,
