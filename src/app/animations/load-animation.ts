@@ -48,11 +48,11 @@ export const backgroundEnter =
 export const cardListFader =
     trigger('cardListFader', [
         transition(':enter', [
-            query('div.card', style({
+            query('app-feed-card', style({
                 transform: 'translateY(20px)',
                 opacity: 0
             })),
-            query('div.card',
+            query('app-feed-card',
                 stagger('150ms', [
                     animate('300ms 100ms ease-out', style({
                         transform: 'translateY(0px)',
@@ -72,7 +72,7 @@ export const chipListFader =
             })),
             query('mat-chip',
                 stagger('150ms', [
-                    animate('300ms 100ms ease-out', style({
+                    animate('300ms 500ms ease-out', style({
                         transform: 'translateY(0px)',
                         opacity: 1
                     }))
