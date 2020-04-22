@@ -19,7 +19,31 @@ mat-icon.input-icon {
     align-items: center;
 }
 
+.form-content {
+    display: flex;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+}
+
 .input-row {
     display: flex;
     align-items: center;
+    button {
+        margin-bottom: 10px;
+        transition: all 200ms ease;
+    }
+    button:hover {
+        background-color: #ddd;
+    }
+}
+
+.hidden-field {
+    display: block !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    width: 0 !important;
 }
