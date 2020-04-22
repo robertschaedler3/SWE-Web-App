@@ -11,20 +11,18 @@ import { MatChipInputEvent } from '@angular/material/chips';
 
 import { StevensEvent } from '../../models/event.model';
 import { EventService } from '../../services/event.service';
+import { AuthService } from '../../services/auth.service';
+import { FileUploadComponent } from '../../components/file-upload/file-upload.component';
 
 export interface TagChip {
   id: string;
   name: string;
 }
 
-export interface DialogResult {
-  event: StevensEvent;
-  tags: TagChip[];
-}
-
 export interface DialogData {
   author: string;
   uid: string;
+  photoURL: string;
 }
 
 export interface FormData {
@@ -41,6 +39,7 @@ export interface EventTime {
   str: string;
   hour: number;
   min: number;
+  offset: number;
 }
 
 @Component({
@@ -50,16 +49,19 @@ export interface EventTime {
 })
 export class CreateComponent {
 
-  constructor(public dialog: MatDialog) { }
+  constructor(
+    public dialog: MatDialog,
+    public auth: AuthService
+  ) { }
 
-  openDialog(): void {
+  openDialog(id, photoURL, displayName): void {
     const dialogRef = this.dialog.open(CreateComponentDialog, {
       width: '800px',
-      data: {}
+      data: { uid: id, photoURL: photoURL, author: displayName }
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+    dialogRef.afterClosed().subscribe(() => {
+      console.log('event created');
     });
   }
 
@@ -87,10 +89,12 @@ export class CreateComponentDialog implements OnInit {
   @ViewChild('tagInput') tagInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
 
+  @ViewChild(FileUploadComponent) fileUpload: FileUploadComponent;
+
   constructor(
     private fb: FormBuilder,
     private afs: AngularFirestore,
-    private events: EventService,
+    private eventSvc: EventService,
     public dialogRef: MatDialogRef<CreateComponentDialog>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData
   ) {
@@ -135,7 +139,8 @@ export class CreateComponentDialog implements OnInit {
           times.push({
             str: `${hour}:${this.pad(min, 2)}${suffix}`,
             hour: suffix === 'pm' ? hour + 12 : hour,
-            min: min
+            min: min,
+            offset: (hour * 60 * 60) + (min * 60)
           });
         }
       }
@@ -207,9 +212,29 @@ export class CreateComponentDialog implements OnInit {
     return this.allTags.filter(tag => tag.name.toLowerCase().indexOf(filterValue) === 0);
   }
 
+  async create() {
+    const { title, description, day, start, end, building, room }: FormData = this.eventForm.value;
 
-  public create() {
-    this.events.createEvent(this.eventForm.value)
+    const event: StevensEvent = {
+      title,
+      description,
+      day: day,
+      start: this.times[start].offset,
+      end: this.times[end].offset,
+      building,
+      room,
+      author: this.data.author,
+      authorId: this.data.uid,
+      authorThumbnail: this.data.photoURL
+    }
+
+    if (this.fileUpload.file !== null) {
+      const url = await this.fileUpload.startUpload();
+      event.thumbnail = url;
+    }
+
+    this.eventSvc.createEvent(event, this.tags);
+    this.dialogRef.close();
   }
 
 }

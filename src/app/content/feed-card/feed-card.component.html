@@ -19,9 +19,10 @@
                 <div class="col-md-6">
                     <div>
                         <mat-icon inline="true">schedule</mat-icon>
-                        <span class="align-to-icon">{{event.start.toDate() | date:'MM/dd'}}
-                            {{event.start.toDate() | date:'h:mm a'}} -
-                            {{event.end.toDate() | date:'h:mm a'}}</span>
+                        <span class="align-to-icon">
+                            {{event.day.toDate() | date:'MM/dd'}}
+                            {{formatTime(event.start)}} - {{formatTime(event.end)}}
+                        </span>
                     </div>
                 </div>
                 <div class="col-md-6">
