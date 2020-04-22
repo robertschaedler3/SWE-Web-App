@@ -1,4 +1,7 @@
-<button mat-raised-button class="btn btn-primary btn-round" type="button" (click)="openDialog()">
-    <i class="material-icons">add</i>
-    Create
-</button>
+<div *ngIf="auth.user$ | async as user">
+    <button mat-raised-button class="btn btn-primary btn-round" type="button"
+        (click)="openDialog(user.uid, user.photoURL, user.displayName)">
+        <i class="material-icons">add</i>
+        Create
+    </button>
+</div>
