@@ -39,6 +39,8 @@ export class SearchComponent implements OnInit {
   search($event): void {
     if ($event.timeStamp - this.lastKeyPress > 300) {
       let query: string = $event.target.value;
+      // TODO: Fork join
+      // TODO: Refine queries
       this.searchSvc.getEvents(query.toUpperCase(), query.toLowerCase() + '\uf8ff').subscribe(results => this.results.events = results);
       this.searchSvc.getPeople(query.toUpperCase(), query.toLowerCase() + '\uf8ff').subscribe(results => this.results.people = results);
       this.searchSvc.getTags(query.toUpperCase(), query.toLowerCase() + '\uf8ff').subscribe(results => this.results.tags = results);

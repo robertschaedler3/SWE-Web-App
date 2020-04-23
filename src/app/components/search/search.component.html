@@ -8,7 +8,7 @@
             <mat-optgroup label="Events">
                 <mat-option *ngFor="let result of results.events" [value]="result.id"
                     (click)="navigateToEvent(result.id)">
-                    <small>{{result.start.toDate() | date:"MM/dd"}} </small>
+                    <small>{{result.day.toDate() | date:"MM/dd"}} </small>
                     <span> {{result.title}}</span>
                 </mat-option>
             </mat-optgroup>
