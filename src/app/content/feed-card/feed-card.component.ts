@@ -1,15 +1,12 @@
 import { Component, Input } from '@angular/core';
-import { Observable } from 'rxjs';
 import { StevensEvent } from '../../models/event.model';
 import { Tag } from '../../models/tag.model';
-import { fadeUp, chipListFader } from '../../animations/load-animation';
 
 
 @Component({
   selector: 'app-feed-card',
   templateUrl: './feed-card.component.html',
-  styleUrls: ['./feed-card.component.scss'],
-  animations: [fadeUp, chipListFader]
+  styleUrls: ['./feed-card.component.scss']
 })
 export class FeedCardComponent {
 
@@ -20,7 +17,7 @@ export class FeedCardComponent {
   }
 
   formatTime(time: number) {
-    return `${Math.floor(time / 3600)}:${this.pad(Math.floor(time % 3600), 2)}`;
+    return `${Math.floor(time / 3600) % 12}:${this.pad(Math.floor((time % 3600) / 60), 2)}`;
   }
 
   private pad(num: number, size: number): string {
