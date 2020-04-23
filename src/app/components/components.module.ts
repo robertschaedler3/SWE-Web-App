@@ -11,6 +11,7 @@ import { SearchComponent } from './search/search.component';
 
 import { MaterialModule } from '../material/material.module';
 import { FileUploadComponent } from './file-upload/file-upload.component';
+import { CreateEventComponent } from '../content/create-event/create-event.component';
 
 @NgModule({
   imports: [
@@ -25,6 +26,7 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
     NavbarComponent,
     SidebarComponent,
     CreateComponent,
+    CreateEventComponent,
     CreateComponentDialog,
     FileUploadComponent,
   ],
@@ -35,6 +37,7 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
     NavbarComponent,
     SidebarComponent,
     CreateComponent,
+    CreateEventComponent,
   ],
   entryComponents: [CreateComponentDialog]
 })
