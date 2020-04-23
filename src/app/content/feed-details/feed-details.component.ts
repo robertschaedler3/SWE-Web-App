@@ -2,19 +2,21 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { StevensEvent } from '../../models/event.model';
-import { EventTag } from '../../models/tag.model';
+import { Tag } from '../../models/tag.model';
 import { EventService } from '../../services/event.service';
+import { fadeUp } from '../../animations/load-animation';
 
 @Component({
   selector: 'app-feed-details',
   templateUrl: './feed-details.component.html',
-  styleUrls: ['./feed-details.component.scss']
+  styleUrls: ['./feed-details.component.scss'],
+  animations: [fadeUp]
 })
 export class FeedDetailsComponent {
 
   eventId: string;
   event$: Observable<StevensEvent>;
-  tags$: Observable<EventTag[]>
+  tags$: Observable<Tag[]>
 
   constructor(
     private route: ActivatedRoute,
