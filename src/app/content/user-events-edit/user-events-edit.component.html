@@ -1,6 +1,16 @@
-<div class="card card-plain">
-    <h4> {{eventId}} </h4>
+<div class="card">
     <div class="card-body">
-
+        <div *ngIf="event$ | async as event">
+            <app-create-event [event]="event" [id]="eventId">
+                <button mat-raised-button class="btn btn-primary btn-round" type="button" (click)="update()">
+                    <i class="material-icons">add</i>
+                    Update
+                </button>
+                <button mat-raised-button class="btn btn-secondary btn-round" type="button" (click)="delete()">
+                    <i class="material-icons">delete</i>
+                    Delete
+                </button>
+            </app-create-event>
+        </div>
     </div>
 </div>
