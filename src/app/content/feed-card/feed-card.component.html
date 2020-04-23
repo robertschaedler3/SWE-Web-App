@@ -7,14 +7,12 @@
             <h6 class="author">{{event.author}}</h6>
             <h4>{{event.title}}</h4>
             <p class="description">{{event.description}}</p>
-            <div *ngIf="tags">
-                <div class="tag-list">
-                    <mat-chip-list [@chipListFader]="tags.length" aria-label="Tag list">
-                        <mat-chip *ngFor="let tag of tags"> {{tag.name}} </mat-chip>
-                    </mat-chip-list>
-                </div>
-            </div>
+
+            <!-- Tag List Content -->
+            <ng-content></ng-content>
+
             <img *ngIf="event.thumbnail" class="event-thumbnail" [src]="event.thumbnail">
+
             <div class="row details">
                 <div class="col-md-6">
                     <div>
