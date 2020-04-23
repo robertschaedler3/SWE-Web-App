@@ -10,11 +10,9 @@ import { DiscoverComponent } from './discover/discover.component';
 import { GroupsComponent } from './groups/groups.component';
 import { SettingsComponent } from './settings/settings.component';
 import { FeedDetailsComponent } from './feed-details/feed-details.component';
-import { FeedCardComponent } from './feed-card/feed-card.component';
-// import { UserEventsComponent } from './user-events/user-events.component';
-// import { UserEventsEditComponent } from './user-events-edit/user-events-edit.component';
-
-
+import { FeedCardComponent } from './feed-card/feed-card.component'
+import { TagListComponent } from '../components/tag-list/tag-list.component';
+import { DiscoverFeedComponent } from './discover-feed/discover-feed.component'
 
 @NgModule({
   declarations: [
@@ -22,28 +20,27 @@ import { FeedCardComponent } from './feed-card/feed-card.component';
     FeedDetailsComponent,
     PeopleComponent,
     DiscoverComponent,
+    DiscoverFeedComponent,
     GroupsComponent,
     SettingsComponent,
     FeedCardComponent,
-    // UserEventsComponent,
-    // UserEventsEditComponent,
+    TagListComponent,
   ],
   imports: [
     CommonModule,
     MaterialModule,
     FormsModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     FeedComponent,
     FeedDetailsComponent,
     PeopleComponent,
     DiscoverComponent,
+    DiscoverFeedComponent,
     GroupsComponent,
     SettingsComponent,
     FeedCardComponent
-    // UserEventsComponent,
-    // UserEventsEditComponent,
   ]
 })
 export class ContentModule { }

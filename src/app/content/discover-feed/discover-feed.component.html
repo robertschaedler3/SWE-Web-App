@@ -1,0 +1,19 @@
+<div class="main-layout">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <div *ngIf="events$ | async as events; else loadingEvents">
+                    <pre>
+                        {{events | json}}
+                    </pre>
+                </div>
+            </div>
+            <ng-template #loadingEvents>
+                <div class="loading-spinner">
+                    <p>Loading...</p>
+                    <mat-progress-bar mode="query"></mat-progress-bar>
+                </div>
+            </ng-template>
+        </div>
+    </div>
+</div>
