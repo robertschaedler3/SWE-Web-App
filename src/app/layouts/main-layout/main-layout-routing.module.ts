@@ -8,11 +8,13 @@ import { DiscoverComponent } from '../../content/discover/discover.component';
 import { SettingsComponent } from '../../content/settings/settings.component';
 import { UserEventsComponent } from '../../content/user-events/user-events.component';
 import { UserEventsEditComponent } from '../../content/user-events-edit/user-events-edit.component';
+import { DiscoverFeedComponent } from '../../content/discover-feed/discover-feed.component';
 
 export const routes: Routes = [
     { path: 'feed', component: FeedComponent },
     { path: 'details/:id', component: FeedDetailsComponent },
     { path: 'discover', component: DiscoverComponent },
+    { path: 'discover/:id', component: DiscoverFeedComponent },
     { path: 'people', component: PeopleComponent },
     {
         path: 'my-events', component: UserEventsComponent,
