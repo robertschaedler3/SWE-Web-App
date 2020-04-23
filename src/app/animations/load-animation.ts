@@ -48,11 +48,11 @@ export const backgroundEnter =
 export const cardListFader =
     trigger('cardListFader', [
         transition(':enter', [
-            query('app-feed-card', style({
+            query('div.card', style({
                 transform: 'translateY(20px)',
                 opacity: 0
             })),
-            query('app-feed-card',
+            query('div.card',
                 stagger('150ms', [
                     animate('300ms 100ms ease-out', style({
                         transform: 'translateY(0px)',
