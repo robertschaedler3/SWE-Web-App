@@ -4,6 +4,20 @@ mat-form-field {
     width: 100%;
 }
 
+.location {
+    display: flex;
+    flex-direction: row;
+    mat-form-field {
+        flex: 1;
+        // min-width: 50% !important;
+        // width: 100%;
+    }
+}
+textarea {
+    width: 100% !important;
+    height: 300px;
+}
+
 .title-field {
     font-size: 16px !important;
 }
@@ -31,13 +45,15 @@ mat-icon.input-icon {
 
 .input-row {
     display: flex;
-    align-items: center;
+    align-items: space-evenly;
+
     button {
         margin-bottom: 10px;
         transition: all 200ms ease;
+        background-color: #333;
     }
     button:hover {
-        background-color: #ddd;
+        background-color: #424242;
     }
 }
 
@@ -46,4 +62,8 @@ mat-icon.input-icon {
     visibility: hidden !important;
     height: 0 !important;
     width: 0 !important;
+}
+
+input::placeholder {
+    color: #ccc;
 }
