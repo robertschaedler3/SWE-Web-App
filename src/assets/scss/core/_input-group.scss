@@ -32,5 +32,54 @@
     background-color: transparent;
     border-color: transparent;
   }
+}
 
+.mat-form-field-label {
+  color: #ccc;
+}
+
+.mat-focused {
+  .mat-form-field-underline .mat-form-field-ripple {
+    background-color: $brand-primary;
+    color: #aaa;
+  }
+  textarea::placeholder {
+    color: #aaa;
+  }
+  input::placeholder {
+    color: #aaa;
+  }
+  .mat-form-field-label {
+    color: $brand-primary;
+  }
+}
+.mat-form-field-appearance-fill.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
+  color: #ccc;
+}
+.mat-form-field-appearance-standard.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
+  color: #ccc;
+}
+
+input::placeholder {
+  color: #ccc;
+}
+
+.mat-form-field-underline .mat-form-field-ripple {
+  background-color: $brand-primary;
+}
+
+.mat-focused .mat-form-field-underline {
+  background-color: $brand-primary;
+}
+.mat-form-field-underline {
+  background-color: $brand-primary;
+}
+
+.mat-dialog-container {
+  background-color: #242424;
+  color: #fff;
+}
+
+.mat-focused .mat-form-field ::placeholder {
+  color: #ccc;
 }
