@@ -6,8 +6,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { firestore } from 'firebase';
 
 import { StevensEvent } from '../models/event.model';
-import { EventTag } from '../models/tag.model';
-import { Tag } from '../models/tag.model';
+import { Tag, EventTag } from '../models/tag.model';
 
 @Injectable({
   providedIn: 'root'
@@ -51,6 +50,20 @@ export class EventService {
     let now = new Date();
     let future = new Date(now.getTime() + 604800000);
     return this.upcoming$ = this.afs.collection<StevensEvent>('/event', ref => ref.orderBy('day').startAt(now).endAt(future)).valueChanges({ idField: 'id' });
+  }
+
+  public getEventsByTag(tagId: string): Observable<StevensEvent[]> {
+    return this.afs.collection<EventTag>('/event_tags', ref => ref.where('tagId', '==', tagId)).get().pipe(
+      switchMap(eventTags => {
+        let eventIds: string[] = [];
+        eventTags.forEach(t => eventIds.push(t.data().eventId));
+        if (eventIds.length > 0) {
+          return this.afs.collection<StevensEvent>('event', ref => ref.where(firestore.FieldPath.documentId(), 'in', eventIds)).valueChanges({ idField: 'id' });
+        } else {
+          return of(null);
+        }
+      })
+    )
   }
 
   public getEvent(id: string): Observable<StevensEvent> {

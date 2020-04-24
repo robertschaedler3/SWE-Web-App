@@ -12,6 +12,7 @@ import { SearchComponent } from './search/search.component';
 import { MaterialModule } from '../material/material.module';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { CreateEventComponent } from '../content/create-event/create-event.component';
+import { RsvpComponent } from './rsvp/rsvp.component';
 
 @NgModule({
   imports: [
@@ -29,6 +30,7 @@ import { CreateEventComponent } from '../content/create-event/create-event.compo
     CreateEventComponent,
     CreateComponentDialog,
     FileUploadComponent,
+    RsvpComponent,
   ],
   exports: [
     BackComponent,
@@ -38,6 +40,7 @@ import { CreateEventComponent } from '../content/create-event/create-event.compo
     SidebarComponent,
     CreateComponent,
     CreateEventComponent,
+    RsvpComponent
   ],
   entryComponents: [CreateComponentDialog]
 })

@@ -1,5 +1,5 @@
 <div class="tag-list">
     <mat-chip-list [@chipListFader]="tags.length" aria-label="Tag list">
-        <mat-chip *ngFor="let tag of tags"> {{tag.name}} </mat-chip>
+        <mat-chip *ngFor="let tag of tags" (click)="navigate(tag.id)"> {{tag.name}} </mat-chip>
     </mat-chip-list>
 </div>

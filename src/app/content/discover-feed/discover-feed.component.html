@@ -1,11 +1,10 @@
-<div class="main-layout">
+<div class="main-content">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-6 offset-3">
                 <div *ngIf="events$ | async as events; else loadingEvents">
-                    <pre>
-                        {{events | json}}
-                    </pre>
+                    <app-feed-card *ngFor="let event of events" [event]="event" (click)="displayDetails(event.id)">
+                    </app-feed-card>
                 </div>
             </div>
             <ng-template #loadingEvents>
