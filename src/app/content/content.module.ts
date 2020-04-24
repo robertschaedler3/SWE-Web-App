@@ -13,6 +13,7 @@ import { FeedDetailsComponent } from './feed-details/feed-details.component';
 import { FeedCardComponent } from './feed-card/feed-card.component'
 import { TagListComponent } from '../components/tag-list/tag-list.component';
 import { DiscoverFeedComponent } from './discover-feed/discover-feed.component'
+import { ComponentsModule } from '../components/components.module';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { DiscoverFeedComponent } from './discover-feed/discover-feed.component'
     CommonModule,
     MaterialModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ComponentsModule
   ],
   exports: [
     FeedComponent,
