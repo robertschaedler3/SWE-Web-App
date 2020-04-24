@@ -4,12 +4,21 @@
             <img class="author-thumbnail" [src]="event.authorThumbnail">
         </div>
         <div class="event-content">
-            <h6 class="author">{{event.author}}</h6>
-            <h4>{{event.title}}</h4>
+            <div class="rsvp-header">
+                <div>
+                    <h6 class="author">{{event.author}}</h6>
+                    <h4>{{event.title}}</h4>
+                </div>
+                <ng-container *ngIf="ref.childNodes.length != 0">
+                    <app-rsvp></app-rsvp>
+                </ng-container>
+            </div>
             <p class="description">{{event.description}}</p>
 
             <!-- Tag List Content -->
-            <ng-content></ng-content>
+            <ng-container><span #ref>
+                    <ng-content></ng-content>
+                </span></ng-container>
 
             <img *ngIf="event.thumbnail" class="event-thumbnail" [src]="event.thumbnail">
 

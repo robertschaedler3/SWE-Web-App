@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { StevensEvent } from '../../models/event.model';
 import { Tag } from '../../models/tag.model';
@@ -20,6 +20,7 @@ export class FeedDetailsComponent {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private eventSvc: EventService
   ) {
     this.route.params.subscribe(params => {
@@ -27,7 +28,11 @@ export class FeedDetailsComponent {
       this.event$ = this.eventSvc.getEvent(this.eventId);
       this.tags$ = this.eventSvc.getTags(this.eventId);
     });
+  }
 
+  displayDetails(id: string) {
+    console.log(id);
+    this.router.navigate(['/details', id]);
   }
 
 }

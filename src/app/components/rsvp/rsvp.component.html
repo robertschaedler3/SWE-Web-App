@@ -1,0 +1,6 @@
+<ng-container *ngIf="rsvped === true; else notRSVP">
+    <button mat-raised-button class="btn btn-sm btn-primary" (click)="unrsvp()">unRSVP</button>
+</ng-container>
+<ng-template #notRSVP>
+    <button mat-raised-button class="btn btn-sm btn-primary" (click)="rsvp()">RSVP</button>
+</ng-template>
