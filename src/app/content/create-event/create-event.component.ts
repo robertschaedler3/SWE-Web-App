@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators, ValidatorFn } from '@angular/forms';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
@@ -80,17 +80,25 @@ export class CreateEventComponent implements OnInit {
 
   ngOnInit(): void {
     this.times = this.generateTimes();
-    // TODO: form validation
+
+    const offsetValidator: ValidatorFn = (fg: FormGroup) => {
+      const start = fg.get('start').value;
+      const end = fg.get('end').value;
+      return start !== null && end !== null && start < end
+        ? null
+        : { range: true };
+    };
+
     this.eventForm = this.fb.group({
-      title: '',
-      description: '',
+      title: ['', Validators.required],
+      description: ['', Validators.required],
       day: new FormControl(new Date()),
-      //TODO: get correct index for current time 
-      start: 0,
-      end: 0,
-      building: '',
-      room: null
-    })
+      start: [0, Validators.required],
+      end: [4, Validators.required],
+      building: ['', Validators.required],
+      room: ['', Validators.required]
+    }, { validators: offsetValidator });
+
     this.afs.collection('/tag').get().subscribe(tags => {
       for (let i = 0; i < tags.docs.length; i++) {
         let doc = tags.docs[i];
@@ -110,8 +118,7 @@ export class CreateEventComponent implements OnInit {
 
   private generateTimes(): EventTime[] {
     // TODO: generate times starting from current time only
-    // hour = (new Date).getHour()
-    // min = Math.floor((new Date).getMin() % 15)
+
     let times: EventTime[] = [];
     for (let i: number = 0; i < 2; i++) {
       let suffix: string = (i == 0) ? 'am' : 'pm';
@@ -128,15 +135,36 @@ export class CreateEventComponent implements OnInit {
         }
       }
     }
-    // console.log(times)
+
+    var hour = (new Date).getHours();
+    var minute = Math.floor((new Date).getMinutes() % 15);
+    let index = 0;
+    // make index the start of the hour
+    for (; index < times.length; index += 4) {
+      const element = times[index];
+      if (element.hour == hour) break;
+    }
+
+    // adjust index for minutes
+    for (; index < times.length; index++) {
+      const element = times[index];
+      if (element.min < minute) {
+        index--;
+        break;
+      }
+    }
+
+    while (index > 0) {
+      times.push(times.shift());
+      index--;
+    }
+
     return times;
   }
 
   private getTimeIndex(time: number) {
-    console.log(time);
     for (var i = 0; i < this.times.length; i++) {
-      if (this.times[i].offset == time)
-        return i;
+      if (this.times[i].offset == time) return i;
     }
   }
 
@@ -197,7 +225,6 @@ export class CreateEventComponent implements OnInit {
 
   selected(event: MatAutocompleteSelectedEvent): void {
     const val = event.option.viewValue;
-    console.log(val);
     let selected: Tag = null;
     for (let i = 0; i < this.allTags.length; i++) {
       if (this.allTags[i].name.toLowerCase() === val.toLowerCase()) {
@@ -225,7 +252,6 @@ export class CreateEventComponent implements OnInit {
   create() {
     this.auth.user$.subscribe(async (user) => {
       const { title, description, day, start, end, building, room }: FormData = this.eventForm.value;
-      console.log(user);
       const event: StevensEvent = {
         title,
         description,
