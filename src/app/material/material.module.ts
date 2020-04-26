@@ -15,6 +15,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatListModule } from '@angular/material/list';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { MaterialElevationDirective } from '../directives/material-elevation.directive';
 
@@ -38,6 +39,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatAutocompleteModule,
     MatExpansionModule,
     MatListModule,
+    MatSnackBarModule,
     FormsModule,
     ReactiveFormsModule
   ],
@@ -57,6 +59,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MaterialElevationDirective,
     MatExpansionModule,
     MatListModule,
+    MatSnackBarModule,
     FormsModule,
     ReactiveFormsModule
   ]
