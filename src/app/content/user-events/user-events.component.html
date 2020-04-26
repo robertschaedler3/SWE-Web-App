@@ -1,27 +1,50 @@
 <div class="main-content">
     <div class="container-fluid">
         <div class="row">
-            <div [ngClass]="{'col-md-4': showOutlet, 'col-md-8 offset-2': !showOutlet}">
-                <div class="card card-plain" *ngIf="events$ | async as events">
-                    <div class="card-body">
-                        <mat-list [@listFader]="events.length">
-                            <mat-list-item *ngFor="let event of events" class="table-responsive">
-                                <div mat-line>{{event.title}}</div>
-                                <div mat-line>
-                                    {{ (event.description.length > 6) ? (event.description | slice:0:20) + '...' : (event.description) }}
-                                </div>
-                                <button mat-icon-button [routerLink]="[event.id]">
-                                    <mat-icon>edit</mat-icon>
-                                </button>
-                            </mat-list-item>
-                        </mat-list>
+            <ng-container *ngIf="events.length > 0; else createNew">
+                <div class="col-md-4">
+                    <div @fadeUp class="card">
+                        <div class="card-body">
+                            <mat-list [@listFader]="events.length">
+                                <mat-list-item *ngFor="let event of events">
+                                    <h1 mat-line>{{event.title}}</h1>
+                                    <p mat-line>
+                                        {{ (event.description.length > 6) ? (event.description | slice:0:20) + '...' : (event.description) }}
+                                    </p>
+                                    <button mat-icon-button [routerLink]="[event.id]">
+                                        <mat-icon>edit</mat-icon>
+                                    </button>
+                                </mat-list-item>
+                            </mat-list>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-8" [hidden]="!showOutlet">
-                <router-outlet (activate)="onActivate($event)" (deactivate)="onDeactivate($event)">
-                </router-outlet>
-            </div>
+                <div class="col-md-8">
+                    <ng-container [hidden]="!showOutlet">
+                        <router-outlet (activate)="onActivate($event)" (deactivate)="onDeactivate($event)">
+                        </router-outlet>
+                    </ng-container>
+                    <ng-container *ngIf="!showOutlet">
+                        <div @fadeUp class="card">
+                            <div class="card-body">
+                                Select an event to edit/view details.
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
+            </ng-container>
+            <ng-template #createNew>
+                <div class="col-md-8 offset-2">
+                    <div @fadeUp class="card">
+                        <div class="card-body">
+                            <div class="create-new">
+                                <h4>You haven't created any events :(</h4>
+                                <app-create></app-create>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
         </div>
     </div>
 </div>
