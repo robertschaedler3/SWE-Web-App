@@ -1,0 +1,40 @@
+.btn > i {
+    margin-right: 0.3rem;
+}
+
+.nav-search {
+    // max-width: 800px;
+    width: 100%;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+.nav-item {
+    flex: 1;
+    align-items: left;
+    display: flex;
+
+    &.nav-wrapper {
+        flex: 2 !important;
+        justify-content: left;
+        align-self: left;
+    }
+
+    button {
+        margin-left: auto;
+    }
+}
+
+.nav-item:first-child > span {
+    margin-right: auto;
+}
+
+.nav-item:last-child > span {
+    margin-left: auto;
+}
+
+.nav-item {
+    align-items: center;
+}

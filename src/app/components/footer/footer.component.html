@@ -1,15 +1,27 @@
-<div class="content">
-    <div class="container mat-typography">
-        <div class="row">
-            <div class="col-md-12">
-                <h3>Developers</h3>
-                <p>Allen Best Jr.</p>
-                <p>Liam Brew</p>
-                <p>Robert Schaedler III</p>
-            </div>
-            <div class="col-md-12">
-                <a href="#">get the app</a>
-            </div>
+<footer class="footer ">
+    <div class="container-fluid">
+        <nav class="pull-left">
+            <ul>
+                <li>
+                    <a href="https://gitlab.com/stevens-software/webapp">
+                        GitLab
+                    </a>
+                </li>
+                <li>
+                    <a href="https://gitlab.com/stevens-software/webapp/-/issues">
+                        Report Issues
+                    </a>
+                </li>
+                <li>
+                    <a [routerLink]="['/download']">
+                        Download
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="copyright pull-right">
+            &copy;
+            {{test | date: 'yyyy'}} Stevens Software <br> A TreadEase Subsidiary.
         </div>
     </div>
-</div>
+</footer>

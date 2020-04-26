@@ -1,0 +1,28 @@
+<form class="search navbar-form">
+    <mat-form-field class="full-width input-group no-border">
+        <mat-label>Search</mat-label>
+        <input matInput #searchInput placeholder="Ex: Last Wednesday" (keydown)="search($event)"
+            [matAutocomplete]="auto">
+        <mat-icon matSuffix>search</mat-icon>
+        <mat-autocomplete #auto="matAutocomplete">
+            <mat-optgroup label="Events">
+                <mat-option *ngFor="let result of results.events" [value]="result.id"
+                    (click)="navigateToEvent(result.id)">
+                    <small>{{result.day.toDate() | date:"MM/dd"}} </small>
+                    <span> {{result.title}}</span>
+                </mat-option>
+            </mat-optgroup>
+            <mat-optgroup label="People">
+                <mat-option *ngFor="let result of results.people" [value]="result.id"
+                    (click)="navigateToProfile(result.id)">
+                    <span> {{result.displayName}}</span>
+                </mat-option>
+            </mat-optgroup>
+            <mat-optgroup label="Tags">
+                <mat-option *ngFor="let result of results.tags" [value]="result.id" (click)="navigateToTag(result.id)">
+                    <span> {{result.name}}</span>
+                </mat-option>
+            </mat-optgroup>
+        </mat-autocomplete>
+    </mat-form-field>
+</form>

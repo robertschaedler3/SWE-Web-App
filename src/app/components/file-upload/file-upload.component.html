@@ -1,0 +1,11 @@
+<div class="upload-container">
+    <div>
+        <input #imgInput hidden="true" type="file" (change)="onDrop($event.target.files)">
+        <button mat-raised-button class="btn btn-sm btn-rounded" (click)="imgInput.click()">Choose image</button>
+    </div>
+    <div class="file-name">
+        <div *ngIf="file">
+            <p>{{file.name}}</p>
+        </div>
+    </div>
+</div>

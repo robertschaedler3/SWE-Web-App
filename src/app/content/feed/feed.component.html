@@ -1,39 +1,35 @@
-<div *ngIf="events.upcoming$ | async as events; else loadingEvents">
-    <div [@cardListFader]="events.length">
-        <div *ngFor="let event of events" class="event event-container event-hover" (click)="displayDetails(event.id)">
-            <div class="author-thumbnail-container">
-                <img class="author-thumbnail" [src]="event.authorThumbnail">
-            </div>
-            <div class="event-content">
-                <h6 class="author">{{event.author}}</h6>
-                <h4>{{event.title}}</h4>
-                <p class="description">
-                    {{ (event.description.length>6)? (event.description | slice:0:140)+'...':(event.description) }}</p>
-                <img *ngIf="event.thumbnail" class="event-thumbnail" [src]="event.thumbnail">
-                <div class="row details">
-                    <div class="col-md-6">
-                        <div>
-                            <mat-icon inline="true">schedule</mat-icon>
-                            <span class="align-to-icon">{{event.start.toDate() | date:'MM/dd'}}
-                                {{event.start.toDate() | date:'h:mm a'}} -
-                                {{event.end.toDate() | date:'h:mm a'}}</span>
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6 offset-3">
+                <div *ngIf="events.upcoming$ | async as events; else loadingEvents">
+                    <div *ngIf="events.length > 0; else noEvents">
+                        <div [@cardListFader]="events.length">
+                            <app-feed-card *ngFor="let event of events" [event]="event"
+                                (click)="displayDetails(event.id)">
+                            </app-feed-card>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div>
-                            <mat-icon inline="true">location_on</mat-icon>
-                            <span class="align-to-icon"> {{event.building}} {{event.room}}
-                            </span>
+                    <ng-template #noEvents>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="no-events-container">
+                                    <div class="inner">
+                                        <h5>Looks like you have no upcoming events.</h5>
+                                        <!-- TODO: Add 'Enable Notifications'/'You will be notified of new events' -->
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    </ng-template>
                 </div>
+                <ng-template #loadingEvents>
+                    <div class="loading-spinner">
+                        <p>Loading...</p>
+                        <mat-progress-bar mode="query"></mat-progress-bar>
+                    </div>
+                </ng-template>
             </div>
         </div>
     </div>
 </div>
-<ng-template #loadingEvents>
-    <div class="loading-spinner">
-        <p>Loading...</p>
-        <mat-progress-bar mode="query"></mat-progress-bar>
-    </div>
-</ng-template>

@@ -1,0 +1,18 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6 offset-3">
+                <div *ngIf="events$ | async as events; else loadingEvents">
+                    <app-feed-card *ngFor="let event of events" [event]="event" (click)="displayDetails(event.id)">
+                    </app-feed-card>
+                </div>
+            </div>
+            <ng-template #loadingEvents>
+                <div class="loading-spinner">
+                    <p>Loading...</p>
+                    <mat-progress-bar mode="query"></mat-progress-bar>
+                </div>
+            </ng-template>
+        </div>
+    </div>
+</div>

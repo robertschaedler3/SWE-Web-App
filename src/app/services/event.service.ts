@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import * as _ from 'lodash';
-import { StevensEvent } from '../models/event.model';
-import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
-import { switchMap } from 'rxjs/operators';
-import { EventTag, Tag } from '../models/tag.model';
+import { switchMap, map } from 'rxjs/operators';
+
+import { AngularFirestore } from '@angular/fire/firestore';
 import { firestore } from 'firebase';
+
+import { StevensEvent } from '../models/event.model';
+import { Tag, EventTag } from '../models/tag.model';
 
 @Injectable({
   providedIn: 'root'
@@ -18,23 +19,67 @@ export class EventService {
     private afs: AngularFirestore,
   ) { }
 
-  public createEvent(data) {
-    console.log(data);
-    let newEvent: StevensEvent = data.event;
-    this.afs.collection<StevensEvent>('/event').add(newEvent).then(event => {
-      data.tags.forEach(tag => {
-        this.afs.collection<EventTag>('/event_tags').doc(`${tag.id}_${event.id}`).set({
-          tagId: tag.id,
-          eventId: event.id
-        }, { merge: true });
-      });
+
+  private addTags(eventId: string, tags: Tag[]) {
+    for (let i = 0; i < tags.length; i++) {
+      var tag = tags[i];
+      this.afs.collection<EventTag>('/event_tags').doc(`${tag.id}_${eventId}`).set({
+        tagId: tag.id,
+        eventId: eventId
+      }, { merge: true });
+    }
+  }
+
+  private deleteTags(eventId: string) {
+    this.afs.collection<EventTag>('event_tag', ref => ref.where('eventId', '==', eventId)).get().pipe(
+      map(tags => {
+        tags.forEach(tag => {
+          this.afs.doc(`event_tag/${tag.id}`).delete();
+        })
+      })
+    )
+  }
+
+  public createEvent(event: StevensEvent, tags: Tag[]) {
+    this.afs.collection<StevensEvent>('/event').add(event).then(event => {
+      this.addTags(event.id, tags);
     });
   }
 
   public getEvents(): Observable<StevensEvent[]> {
     let now = new Date();
     let future = new Date(now.getTime() + 604800000);
-    return this.upcoming$ = this.afs.collection<StevensEvent>('/event', ref => ref.orderBy('start').startAt(now).endAt(future)).valueChanges({ idField: 'id' });
+    return this.upcoming$ = this.afs.collection<StevensEvent>('/event', ref => ref.orderBy('day').startAt(now).endAt(future)).valueChanges({ idField: 'id' });
+  }
+
+  public getEventsByTag(tagId: string): Observable<StevensEvent[]> {
+    return this.afs.collection<EventTag>('/event_tags', ref => ref.where('tagId', '==', tagId)).get().pipe(
+      switchMap(eventTags => {
+        let eventIds: string[] = [];
+        eventTags.forEach(t => eventIds.push(t.data().eventId));
+        if (eventIds.length > 0) {
+          return this.afs.collection<StevensEvent>('event', ref => ref.where(firestore.FieldPath.documentId(), 'in', eventIds)).valueChanges({ idField: 'id' });
+        } else {
+          return of(null);
+        }
+      })
+    )
+  }
+
+  public getEvent(id: string): Observable<StevensEvent> {
+    return this.afs.doc<StevensEvent>(`/event/${id}`).valueChanges();
+  }
+
+  public updateEvent(id: string, data: StevensEvent, tags: Tag[]): void {
+    this.afs.doc<StevensEvent>(`event/${id}`).update(data).then(() => {
+      this.addTags(id, tags);
+    });
+  }
+
+  public deleteEvent(eventId: string): void {
+    this.afs.doc(`event/${eventId}`).delete().then(() => {
+      this.deleteTags(eventId);
+    })
   }
 
   public getTags(eventId: string): Observable<Tag[]> {
@@ -43,12 +88,25 @@ export class EventService {
         let tagIds: string[] = [];
         eventTags.forEach(t => tagIds.push(t.data().tagId));
         if (tagIds.length > 0) {
-          return this.afs.collection<Tag>('tag', ref => ref.where(firestore.FieldPath.documentId(), 'in', tagIds)).valueChanges();
+          return this.afs.collection<EventTag>('tag', ref => ref.where(firestore.FieldPath.documentId(), 'in', tagIds))
+            .valueChanges({ idField: 'id' });
         } else {
           return of(null);
         }
       })
     );
+  }
+
+  public getRsvpCount(eventId: string): Observable<number> {
+    return this.afs.collection('rsvp', ref => ref.where('eventId', '==', eventId)).get().pipe(
+      switchMap(rsvps => {
+        if (rsvps) {
+          return of(rsvps.size);
+        } else {
+          return of(0);
+        }
+      })
+    )
   }
 
 }

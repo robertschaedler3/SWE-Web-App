@@ -26,31 +26,35 @@ export const fader =
 
 export const fadeUp =
     trigger('fadeUp', [
-        state('show', style({
-            opacity: 1
-        })),
-        state('hide', style({
-            opacity: 0
-        })),
         transition(':enter', [
             style({
                 opacity: 0,
-                transform: 'translateY(50px) rotateX(-10deg)'
+                transform: 'translateY(10px)'
             }),
             animate('400ms 100ms ease-out')
+        ])
+    ]);
+
+export const backgroundEnter =
+    trigger('backgroundEnter', [
+        transition(':enter', [
+            style({
+                transform: 'translateY(300px) rotateZ(-10deg)'
+            }),
+            animate('400ms 200ms ease')
         ])
     ]);
 
 export const cardListFader =
     trigger('cardListFader', [
         transition(':enter', [
-            query('div.event', style({
-                transform: 'translateY(40px)',
+            query('div.card', style({
+                transform: 'translateY(20px)',
                 opacity: 0
             })),
-            query('div.event',
-                stagger('100ms', [
-                    animate('300ms 600ms ease-out', style({
+            query('div.card',
+                stagger('150ms', [
+                    animate('300ms 100ms ease-out', style({
                         transform: 'translateY(0px)',
                         opacity: 1
                     }))
@@ -61,18 +65,36 @@ export const cardListFader =
 
 export const chipListFader =
     trigger('chipListFader', [
-        transition('* => *', [
+        transition(':enter', [
             query('mat-chip', style({
-                transform: 'translateY(20px)',
+                transform: 'translateY(10px)',
                 opacity: 0
             })),
             query('mat-chip',
-                stagger('100ms', [
-                    animate('300ms ease-out', style({
+                stagger('150ms', [
+                    animate('300ms 500ms ease-out', style({
                         transform: 'translateY(0px)',
                         opacity: 1
                     }))
                 ])
             )
         ])
-    ]); 
+    ]);
+
+export const listFader =
+    trigger('listFader', [
+        transition(':enter', [
+            query('mat-list-item', style({
+                transform: 'translateY(20px)',
+                opacity: 0
+            })),
+            query('mat-list-item',
+                stagger('150ms', [
+                    animate('300ms 300ms ease-out', style({
+                        transform: 'translateY(0px)',
+                        opacity: 1
+                    }))
+                ])
+            )
+        ])
+    ]);

@@ -1,24 +1,28 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { FeedDetailsComponent } from 'src/app/content/feed-details/feed-details.component';
+import { FeedComponent } from '../../content/feed/feed.component';
+import { FeedDetailsComponent } from '../../content/feed-details/feed-details.component';
+import { PeopleComponent } from '../../content/people/people.component';
+import { DiscoverComponent } from '../../content/discover/discover.component';
+import { SettingsComponent } from '../../content/settings/settings.component';
+import { UserEventsComponent } from '../../content/user-events/user-events.component';
+import { UserEventsEditComponent } from '../../content/user-events-edit/user-events-edit.component';
+import { DiscoverFeedComponent } from '../../content/discover-feed/discover-feed.component';
 
-import { FeedComponent } from 'src/app/content/feed/feed.component';
-import { PeopleComponent } from 'src/app/content/people/people.component';
-import { GroupsComponent } from 'src/app/content/groups/groups.component';
-import { SettingsComponent } from 'src/app/content/settings/settings.component';
-import { DiscoverComponent } from 'src/app/content/discover/discover.component';
-
-
-
-const routes: Routes = [
+export const routes: Routes = [
     { path: 'feed', component: FeedComponent },
+    { path: 'details/:id', component: FeedDetailsComponent },
     { path: 'discover', component: DiscoverComponent },
+    { path: 'discover/:id', component: DiscoverFeedComponent },
     { path: 'people', component: PeopleComponent },
-    { path: 'groups', component: GroupsComponent },
+    {
+        path: 'my-events', component: UserEventsComponent,
+        children: [
+            { path: ':id', component: UserEventsEditComponent }
+        ]
+    },
     { path: 'settings', component: SettingsComponent },
-    { path: 'details', redirectTo: 'feed' },
-    { path: 'details/:eventId', component: FeedDetailsComponent },
 ];
 
 @NgModule({

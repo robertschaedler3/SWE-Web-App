@@ -2,24 +2,46 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
-import { MaterialModule } from '../material/material.module';
-
 import { FooterComponent } from './footer/footer.component';
-import { NavComponent } from './nav/nav.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { CreateComponent, CreateComponentDialog } from '../content/create/create.component';
+import { BackComponent } from './back/back.component';
+import { SearchComponent } from './search/search.component';
+
+import { MaterialModule } from '../material/material.module';
+import { FileUploadComponent } from './file-upload/file-upload.component';
+import { CreateEventComponent } from '../content/create-event/create-event.component';
+import { RsvpComponent } from './rsvp/rsvp.component';
 
 @NgModule({
-  declarations: [
-    FooterComponent,
-    NavComponent
-  ],
   imports: [
     CommonModule,
-    MaterialModule,
-    RouterModule
+    RouterModule,
+    MaterialModule
+  ],
+  declarations: [
+    BackComponent,
+    SearchComponent,
+    FooterComponent,
+    NavbarComponent,
+    SidebarComponent,
+    CreateComponent,
+    CreateEventComponent,
+    CreateComponentDialog,
+    FileUploadComponent,
+    RsvpComponent,
   ],
   exports: [
+    BackComponent,
     FooterComponent,
-    NavComponent
-  ]
+    SearchComponent,
+    NavbarComponent,
+    SidebarComponent,
+    CreateComponent,
+    CreateEventComponent,
+    RsvpComponent
+  ],
+  entryComponents: [CreateComponentDialog]
 })
-export class ComponentModule { }
+export class ComponentsModule { }

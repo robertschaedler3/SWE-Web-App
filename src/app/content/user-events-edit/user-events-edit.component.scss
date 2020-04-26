@@ -1,0 +1,12 @@
+button {
+    margin-right: 1rem !important;
+}
+
+.edit-header {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    button {
+        margin-top: 1rem;
+    }
+}

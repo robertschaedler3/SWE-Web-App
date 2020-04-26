@@ -1,20 +1,11 @@
-<style>
-    :host {
-        font-family: "Roboto";
-        font-size: 14px;
-        box-sizing: border-box;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-    }
-</style>
 <div @fader class="login-container">
     <form class="row">
         <div class="img-container col-md-12">
-            <img class="logo" src="assets/images/logo-full.png" alt="Stevens Software">
+            <img class="logo" src="assets/img/logo-full.png" alt="Stevens Software">
         </div>
         <div class="button-container">
-            <button mat-raised-button color="primary" type="button" (click)="auth.googleSignin()">
-                <img class="button-logo" src="assets/images/button-logo.png" alt="">
+            <button mat-raised-button class="btn btn-primary btn-round" type="button" (click)="auth.googleSignin()">
+                <img class="button-logo" src="assets/img/button-logo.png" alt="">
                 Sign in with Stevens
             </button>
         </div>
@@ -23,4 +14,3 @@
         </div>
     </form>
 </div>
-<!-- <app-footer></app-footer> -->

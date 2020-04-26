@@ -1,0 +1,16 @@
+.img-thumbnail {
+    border-radius: 16px;
+}
+.img-raised {
+    @include shadow-big-image();
+}
+
+.rounded {
+    border-radius: $border-radius-large !important;
+}
+
+.thumbnail-avatar {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}

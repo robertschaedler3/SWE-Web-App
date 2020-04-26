@@ -1,0 +1,21 @@
+input {
+    position: relative;
+}
+
+button {
+    margin-bottom: 15px !important;
+}
+
+.upload-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.file-name {
+    margin-left: 1rem;
+    height: 20px;
+    font-size: 11px;
+    padding-bottom: 10px;
+    font-weight: 500;
+    text-transform: uppercase;
+}

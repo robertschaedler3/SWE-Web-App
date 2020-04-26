@@ -1,19 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { StevensEvent } from '../../models/event.model';
 import { Tag } from '../../models/tag.model';
 import { EventService } from '../../services/event.service';
-import { fadeUp, chipListFader } from '../../animations/load-animation';
+import { fadeUp } from '../../animations/load-animation';
 
 @Component({
   selector: 'app-feed-details',
   templateUrl: './feed-details.component.html',
   styleUrls: ['./feed-details.component.scss'],
-  animations: [fadeUp, chipListFader]
+  animations: [fadeUp]
 })
-export class FeedDetailsComponent implements OnInit {
+export class FeedDetailsComponent {
 
   eventId: string;
   event$: Observable<StevensEvent>;
@@ -21,18 +20,19 @@ export class FeedDetailsComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private afs: AngularFirestore,
+    private router: Router,
     private eventSvc: EventService
   ) {
     this.route.params.subscribe(params => {
-      this.eventId = params.eventId;
-      this.event$ = this.afs.collection('/event').doc<StevensEvent>(this.eventId).valueChanges();
+      this.eventId = params.id;
+      this.event$ = this.eventSvc.getEvent(this.eventId);
       this.tags$ = this.eventSvc.getTags(this.eventId);
     });
-
   }
 
-  ngOnInit(): void {
+  displayDetails(id: string) {
+    console.log(id);
+    this.router.navigate(['/details', id]);
   }
 
 }
