@@ -20,10 +20,10 @@
                     </div>
                 </div>
                 <div class="col-md-8">
-                    <ng-container [hidden]="!showOutlet">
+                    <div [hidden]="!showOutlet">
                         <router-outlet (activate)="onActivate($event)" (deactivate)="onDeactivate($event)">
                         </router-outlet>
-                    </ng-container>
+                    </div>
                     <ng-container *ngIf="!showOutlet">
                         <div @fadeUp class="card">
                             <div class="card-body">

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
 import { EventService } from '../../services/event.service';
@@ -17,12 +17,17 @@ export class DiscoverFeedComponent {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private eventSvc: EventService
   ) {
     this.route.params.subscribe(params => {
       this.tagId = params.id;
       this.events$ = this.eventSvc.getEventsByTag(this.tagId);
     })
+  }
+
+  displayDetails(eventId: string) {
+    this.router.navigate(['feed', eventId]);
   }
 
 }

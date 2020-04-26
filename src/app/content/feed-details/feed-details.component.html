@@ -3,7 +3,7 @@
         <div @fadeUp class="row">
             <div class="col-md-8 offset-2">
                 <div *ngIf="event$ | async as event">
-                    <app-feed-card [event]="event" [tags]="tags">
+                    <app-feed-card [event]="event" [tags]="tags$">
                         <div *ngIf="tags$ | async as tags">
                             <app-tag-list [tags]="tags"></app-tag-list>
                         </div>
