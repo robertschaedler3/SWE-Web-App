@@ -97,4 +97,16 @@ export class EventService {
     );
   }
 
+  public getRsvpCount(eventId: string): Observable<number> {
+    return this.afs.collection('rsvp', ref => ref.where('eventId', '==', eventId)).get().pipe(
+      switchMap(rsvps => {
+        if (rsvps) {
+          return of(rsvps.size);
+        } else {
+          return of(0);
+        }
+      })
+    )
+  }
+
 }
