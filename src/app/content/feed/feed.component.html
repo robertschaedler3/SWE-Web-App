@@ -3,10 +3,25 @@
         <div class="row">
             <div class="col-md-6 offset-3">
                 <div *ngIf="events.upcoming$ | async as events; else loadingEvents">
-                    <div [@cardListFader]="events.length">
-                        <app-feed-card *ngFor="let event of events" [event]="event" (click)="displayDetails(event.id)">
-                        </app-feed-card>
+                    <div *ngIf="events.length > 0; else noEvents">
+                        <div [@cardListFader]="events.length">
+                            <app-feed-card *ngFor="let event of events" [event]="event"
+                                (click)="displayDetails(event.id)">
+                            </app-feed-card>
+                        </div>
                     </div>
+                    <ng-template #noEvents>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="no-events-container">
+                                    <div class="inner">
+                                        <h5>Looks like you have no upcoming events.</h5>
+                                        <!-- TODO: Add 'Enable Notifications'/'You will be notified of new events' -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
                 </div>
                 <ng-template #loadingEvents>
                     <div class="loading-spinner">

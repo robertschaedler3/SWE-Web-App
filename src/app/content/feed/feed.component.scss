@@ -1,0 +1,7 @@
+.no-events-container {
+    display: flex;
+    justify-content: center;
+    .inner {
+        flex-direction: column;
+    }
+}
