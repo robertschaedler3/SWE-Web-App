@@ -1,5 +1,11 @@
 <div class="card">
     <div class="card-body">
+        <div class="edit-header">
+            <h3>RSVPs: {{rsvps}}</h3>
+            <button mat-icon-button [routerLink]="['/my-events']">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
         <div *ngIf="event$ | async as event">
             <app-create-event [event]="event" [id]="eventId">
                 <button mat-raised-button class="btn btn-primary btn-round" type="button" (click)="update()">
